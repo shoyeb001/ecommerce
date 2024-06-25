@@ -1,0 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum PayMethod {
+  CASH
+  ONLINE
+}
+
+enum PayStatus {
+  PENDING
+  COMPLETED
+}
+
+enum OrderStatus {
+  ORDERED
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+}
+
+model User {
+  id         String     @id @default(dbgenerated("concat('user_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  firstName  String
+  lastName   String
+  email      String     @unique
+  password   String
+  avatar     String?
+  address    String?
+  city       String?
+  state      String?
+  country    String?
+  houseName  String?
+  pin        String?
+  postOffice String?
+  role       Role       @default(USER)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  cart       Cart[]
+  Wishlist   Wishlist[]
+  Review     Review[]
+  Order      Order[]
+}
+
+model Category {
+  id        String    @id @default(dbgenerated("concat('cat_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  image     String
+  name      String
+  slug      String    @unique
+  isActice  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  product   Product[]
+}
+
+model Product {
+  id          String       @id @default(dbgenerated("concat('prod_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  title       String
+  thumbnail   String
+  image1      String
+  image2      String
+  image3      String
+  price       Int
+  categoryId  String
+  category    Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  description String
+  slug        String       @unique
+  tags        String
+  isFeatures  Boolean      @default(false)
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  cart        Cart[]
+  Wishlist    Wishlist[]
+  OrderItems  OrderItems[]
+}
+
+model Cart {
+  id        String   @id @default(dbgenerated("concat('cart_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Wishlist {
+  id        String   @id @default(dbgenerated("concat('wli_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id          String   @id @default(dbgenerated("concat('rev_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rating      Int
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Order {
+  id            String       @id @default(dbgenerated("concat('order_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  firstName     String
+  lastName      String
+  address       String
+  city          String
+  state         String
+  country       String
+  houseName     String
+  pin           String
+  postOffice    String
+  totalPrice    Int
+  userId        String
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paymentMethod PayMethod?
+  paymentId     String?
+  paymentStatus PayStatus?
+  orderStatus   OrderStatus?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  OrderItems    OrderItems[]
+}
+
+model OrderItems {
+  id        String   @id @default(dbgenerated("concat('orditem_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+  price     Int
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
