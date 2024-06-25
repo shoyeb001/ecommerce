@@ -9,12 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.15.1",
+    "bcrypt": "^5.1.1",
+    "joi": "^17.13.3",
+    "jose": "^5.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.4"
+    "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/node": "20.14.8",
+    "@types/react": "18.3.3",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "prisma": "^5.15.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.5.2"
   }
 }
