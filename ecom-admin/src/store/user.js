@@ -1,5 +1,4 @@
 import {create} from "zustand";
-
 import toast from "react-hot-toast";
 import {callApi} from "@/config/apiconfig.js";
 import axios from "axios";
@@ -42,10 +41,9 @@ export const useUser = create((set)=>({
          // await callApi({method:"get",url:"user/logout", token: initialState.user.token});
           const headers = {
               Authorization: `Bearer ${initialState?.user?.token}`,
-              credentials: 'include',
 
           };
-          await axios.get(`http://localhost:3000/api/user/logout`,{headers});
+          await axios.get(`/api/user/logout`,{headers});
          localStorage.clear();
          set({...initialState})
       }catch (e) {
