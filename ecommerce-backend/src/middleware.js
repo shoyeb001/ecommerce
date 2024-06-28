@@ -24,7 +24,7 @@ export async function middleware(req){
                 })
             }
             if (
-                req.nextUrl.pathname.startsWith("/admin") &&
+                req.nextUrl.pathname.startsWith("/api/admin") &&
                 payload?.role !== "ADMIN"
             ) {
                return NextResponse.json({
@@ -42,5 +42,5 @@ export async function middleware(req){
 }
 
 export const config={
-    matcher:["/api/user/:path*"]
+    matcher:["/api/user/:path*", "/api/admin/:path*"]
 }

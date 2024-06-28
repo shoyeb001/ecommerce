@@ -13,6 +13,7 @@ export async function POST(req){
         password: joi.string().min(6).required()
     });
     const reqBody = await req.json();
+    console.log(reqBody)
     const {error} = loginSchema.validate(reqBody);
     if(error){
         return NextResponse.json({
@@ -32,7 +33,7 @@ export async function POST(req){
             return NextResponse.json({
                 message:"User does not found"
             },{
-                status: 204
+                status: 401
             })
         }
 
@@ -58,7 +59,8 @@ export async function POST(req){
 
         const response =  NextResponse.json({
             access_token: access_token,
-            name: user?.name,
+            firstName: user?.firstName,
+            lastName: user?.lastName,
             role: user?.role
         },{
             status: 200
