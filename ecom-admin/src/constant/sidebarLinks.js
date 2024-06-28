@@ -4,27 +4,27 @@ const sidebarLinks = [
     {
         name:"Dashboard",
         path: "/dashboard",
-        icon: <CircleGauge/>,
+        icon: CircleGauge,
     },
     {
         name: "Products",
         path:"/dashboard/products",
-        icon:<PackageSearch/>
+        icon:PackageSearch
     },
     {
         name:"Categories",
         path:"/dashboard/categories",
-        icon:<List/>
+        icon:List
     },
     {
         name:"Orders",
         path:"/dashboard/orders",
-        icon:<ShoppingCart/>
+        icon:ShoppingCart
     },
     {
         name: "Users",
         path: "/dashboard/users",
-        icon:<User/>
+        icon:User
     }
 ]
 export default sidebarLinks;
