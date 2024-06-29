@@ -11,8 +11,20 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {useUser} from "@/store/user.js";
+import {useNavigate} from "react-router-dom";
+import toast from "react-hot-toast";
 const ProfileMenu = () =>{
     const userStore = useUser();
+    const navigate = useNavigate();
+    const logout = async() =>{
+        try {
+            await userStore.logout();
+            toast.success("User logged in successfully")
+            navigate("/")
+        }catch (e){
+            toast.error(e?.message)
+        }
+    }
     return (
         <>
             <DropdownMenu>
@@ -37,7 +49,7 @@ const ProfileMenu = () =>{
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
-                    <DropdownMenuItem onClick={async ()=>{await userStore.logout()}}>
+                    <DropdownMenuItem onClick={logout}>
                         Log out
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                     </DropdownMenuItem>

@@ -43,9 +43,10 @@ export const useUser = create((set)=>({
               Authorization: `Bearer ${initialState?.user?.token}`,
 
           };
-          await axios.get(`/api/user/logout`,{headers});
+          const success = await axios.get(`/api/user/logout`,{headers});
          localStorage.clear();
          set({...initialState})
+          return success;
       }catch (e) {
           set({...initialState.user, loading:false});
           toast.error(e?.response?.data?.message)
