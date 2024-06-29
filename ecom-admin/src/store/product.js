@@ -1,28 +1,33 @@
 import { create } from 'zustand'
 import toast from "react-hot-toast";
 import {callApi} from "@/config/apiconfig.js";
-const initialState = {
+
+export const useProduct = create((set) => ({
     products:[],
     isLoading: false,
-    product:null
-}
-export const useProduct = create((set) => ({
-    ...initialState,
+    product:null,
     addProduct: async (value,token)=>{
         try{
-            set({...initialState, isLoading: true});
-            console.log(value)
+            set((state)=>({...state, isLoading:true}));
             const {data} = await callApi({url:"admin/product/add", data:value, method:"post", token})
-            set({...initialState, products:initialState.products.push(data), isLoading:false})
+            set((state)=>({...state, isLoading:false, products:[...state.products, value]}));
             toast.success("Product added successfully");
             return data;
         }catch (e) {
-            set({...initialState, isLoading:false})
+            set((state)=>({...state, isLoading:false}))
             toast.error(e?.response?.data?.message)
         }
     },
-    getProducts: async ()=>{
-
+    getProducts: async (token)=>{
+        try{
+            set((state)=>({...state, isLoading:true}));
+            const {data} = await callApi({url:"admin/product/all", method:"get", token});
+            set((state)=>({...state, isLoading:false, products: data}))
+            return;
+        }catch (e) {
+           set((state)=>({...state, isLoading:false}))
+            toast.error(e?.response?.data?.message)
+        }
     },
     viewProduct: async ()=>{
 

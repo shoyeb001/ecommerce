@@ -1,25 +1,21 @@
 import {productColumn} from "@/pages/dashboard/product/components/ProductColumn.jsx";
 import ProductTable from "@/pages/dashboard/product/components/ProductTable.jsx";
+import {useProduct} from "@/store/product.js";
+import {useEffect} from "react";
+import {useUser} from "@/store/user.js";
 const ProductList = () =>{
-    const data = [
-        {
-            title:"Product 1",
-            thumbnail:"https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg",
-            price:3000,
-            category:"juice",
-            slug:"product-1"
-        },
-        {
-            title:"Product 1",
-            thumbnail:"https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg",
-            price:3000,
-            category:"juice",
-            slug:"product-1"
-        }
-    ]
+    const productStore = useProduct();
+    const userStore= useUser();
+    useEffect(()=>{
+        productStore.getProducts(userStore?.token);
+    },[])
     return (
         <div className="p-3">
-            <ProductTable data={data} columns={productColumn}/>
+            {
+                productStore?.products &&(
+                    <ProductTable data={productStore?.products} columns={productColumn}/>
+                )
+            }
         </div>
     )
 }

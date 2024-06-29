@@ -21,9 +21,10 @@ import ImageUpload from "@/pages/dashboard/product/components/ImageUpload.jsx";
 import {useProduct} from "@/store/product.js";
 import toast from "react-hot-toast";
 import {useUser} from "@/store/user.js";
+import Tiptap from "@/components/editor/Tiptap.jsx";
 
 const addProductSchema = z.object({
-    title: z.string().min(10).max(40),
+    title: z.string().min(10).max(200),
     thumbnail: z.string(),
     image1: z.string(),
     image2:  z.string(),
@@ -43,6 +44,13 @@ const addProductSchema = z.object({
     tags: z.string().min(1,{
         message:"tags is required"
     }),
+    longDesc: z.string().min(1,{
+        message:"Long description required"
+    }),
+    quantity: z.string().min(1,{
+        message: "quantity is required"
+    }),
+    discountPrice: z.string(),
     isFeatures: z.boolean(),
     isActive: z.boolean(),
 })
@@ -71,13 +79,16 @@ const AddProduct = ()=>{
             tags: "",
             isFeatures: false,
             isActive: true,
+            longDesc:"",
+            quantity:"",
+            discountPrice:null
         },
     })
 
     // 2. Define a submit handler.
     async function onSubmit(values) {
         try{
-          await productStore.addProduct({...values, price:Number(values.price), thumbnail: thumb, image1:img1, image2:img2, image3:img3},userStore?.user?.token);
+          await productStore.addProduct({...values, price:Number(values.price), quantity: Number(values.quantity), discountPrice: Number(values.discountPrice), thumbnail: thumb, image1:img1, image2:img2, image3:img3},userStore?.user?.token);
           setOpen(false);
           form.reset();
         }catch (e) {
@@ -194,14 +205,17 @@ const AddProduct = ()=>{
                             <div className="flex gap-4">
                                 <FormField
                                     control={form.control}
-                                    name="price"
+                                    name="longDesc"
                                     render={({ field }) => (
-                                        <FormItem className="flex-1">
-                                            <FormLabel>Product Price</FormLabel>
+                                        <FormItem className="flex-1 mt-3">
+                                            <FormLabel>Long Description</FormLabel>
                                             <FormControl>
-                                                <Input placeholder="Price" {...field} />
+                                                {/* <Textarea rows={8} placeholder="Enter Description" {...field} /> */}
+                                                <Tiptap
+                                                    description={field.value}
+                                                    onChange={field.onChange}
+                                                />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -210,11 +224,11 @@ const AddProduct = ()=>{
                                     name="categoryId"
                                     render={({ field }) => (
                                         <FormItem className="flex-1">
-                                            <FormLabel>Email</FormLabel>
+                                            <FormLabel>Product Category</FormLabel>
                                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder="Select a verified email to display" />
+                                                        <SelectValue placeholder="Select Category" />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
@@ -252,6 +266,34 @@ const AddProduct = ()=>{
                                             <FormLabel>Product Slug</FormLabel>
                                             <FormControl>
                                                 <Input placeholder="Product slug" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                            <div className="flex gap-4">
+                                <FormField
+                                    control={form.control}
+                                    name="discountPrice"
+                                    render={({ field }) => (
+                                        <FormItem className="flex-1">
+                                            <FormLabel>Discount Price</FormLabel>
+                                            <FormControl>
+                                                <Input type="number" placeholder="Discount Price" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="quantity"
+                                    render={({ field }) => (
+                                        <FormItem className="flex-1">
+                                            <FormLabel>Quantity</FormLabel>
+                                            <FormControl>
+                                                <Input type="number" placeholder="Quantity" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

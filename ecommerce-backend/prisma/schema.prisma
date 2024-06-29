@@ -70,25 +70,28 @@ model Category {
 }
 
 model Product {
-  id          String       @id @default(dbgenerated("concat('prod_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
-  title       String
-  thumbnail   String
-  image1      String
-  image2      String
-  image3      String
-  price       Int
-  categoryId  String
-  category    Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  description String
-  slug        String       @unique
-  tags        String
-  isFeatures  Boolean      @default(false)
-  isActive    Boolean      @default(true)
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  cart        Cart[]
-  Wishlist    Wishlist[]
-  OrderItems  OrderItems[]
+  id            String       @id @default(dbgenerated("concat('prod_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  title         String
+  thumbnail     String
+  image1        String
+  image2        String
+  image3        String
+  price         Int
+  categoryId    String
+  category      Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  description   String
+  longDesc      String
+  slug          String       @unique
+  tags          String
+  quantity      Int          @default(25)
+  discountPrice Int?
+  isFeatures    Boolean      @default(false)
+  isActive      Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  cart          Cart[]
+  Wishlist      Wishlist[]
+  OrderItems    OrderItems[]
 }
 
 model Cart {
