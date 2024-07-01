@@ -1,15 +1,10 @@
 import Autoplay from "embla-carousel-autoplay"
 import {useRef} from "react";
-import { Card, CardContent } from "@/components/ui/card"
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
+import {Card} from "@/components/ui/card"
+import {Carousel, CarouselContent, CarouselItem,} from "@/components/ui/carousel";
 import FistSliderContent from "@/pages/home/components/FistSliderContent.jsx"
 import {homeSliderData} from "@/constant/slidertext.js";
+
 const HomeSlider = ()=>{
     const plugin = useRef(
         Autoplay({ delay: 2000, stopOnInteraction: true })

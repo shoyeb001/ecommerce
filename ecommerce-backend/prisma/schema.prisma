@@ -90,8 +90,9 @@ model Product {
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
   cart          Cart[]
-  Wishlist      Wishlist[]
-  OrderItems    OrderItems[]
+  wishlist      Wishlist[]
+  orderItems    OrderItems[]
+  review        Review[]
 }
 
 model Cart {
@@ -121,6 +122,8 @@ model Review {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   rating      Int
   description String
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
