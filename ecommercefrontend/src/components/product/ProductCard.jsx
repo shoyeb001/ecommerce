@@ -7,16 +7,16 @@ const ProductCard = ({data})=>{
         <div className="h-full w-full">
             <div className="cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded">
                 <div className="transition-all duration-[0.3] delay-0 ease z-[11] relative w-full h-[244px] overflow-hidden">
-                    <Link to="/product" className="relative block overflow-hidden w-full h-full">
+                    <Link to={`/product/${data?.slug}`} className="relative block overflow-hidden w-full h-full">
                         <img src={data?.thumbnail} className="max-w-full transition-all duration-[0.3s] ease delay-0 object-contain w-full h-full"/>
                     </Link>
                 </div>
                 <div className="flex flex-col text-left border-t-[1px] h-[249px] border-solid border-[#eee] p-5">
-                    <Link to="/tag" className="">
+                    <Link to="/shop" className="">
                         <h6 className="mb-[10px] font-normal text-[#999] text-[13px] leading-1 capitalize">{data?.category?.name}</h6>
                     </Link>
                     <h5 className="mb-[10px] text-[16px]">
-                        <Link to="/product" className="block text-[14px]  leading-5 font-normal text-[#4b5966] capitalize hover:text-[#5caf90]"><p className="line-clamp-1">{data?.title}</p></Link>
+                        <Link to={`/product/${data?.slug}`} className="block text-[14px]  leading-5 font-normal text-[#4b5966] capitalize hover:text-[#5caf90]"><p className="line-clamp-1">{data?.title}</p></Link>
                     </h5>
                     <div className="mt-[20px] flex flex-col">
                         {/*<span className="mb-[10px] relative flex">*/}

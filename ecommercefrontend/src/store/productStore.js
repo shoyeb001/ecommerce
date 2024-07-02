@@ -30,6 +30,10 @@ export const useProduct = create((set) => ({
        set((state)=>({...state, products:data?.data, total: data?.total}))
     },
 
+    setProductDetail:(data)=>{
+      set((state)=>({...state, product:data}))
+    },
+
     setCategoryFilter: (data)=>{
         set((state)=>{
            return {
