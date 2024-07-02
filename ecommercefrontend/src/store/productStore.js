@@ -7,11 +7,13 @@ export const useProduct = create((set) => ({
     featuredProducts:[],
     filter:{
         category :[],
-        priceRange:null,
+        priceRange:200,
         tags:[],
         sortBy:"latest",
-        limit:10
+        limit:10,
+        page:1,
     },
+    total:0,
     isLoading:false,
 
     getFeatureProducts:async()=>{
@@ -24,8 +26,69 @@ export const useProduct = create((set) => ({
             return e;
         }
     },
-    getProducts:async (data)=>{
-       set((state)=>({...state, products:data}))
+    getProducts: (data)=>{
+       set((state)=>({...state, products:data?.data, total: data?.total}))
+    },
+
+    setCategoryFilter: (data)=>{
+        set((state)=>{
+           return {
+               ...state,
+               filter:{
+                   ...state.filter,
+                   category: data
+               }
+           }
+        })
+    },
+
+    setPriceFilter: (data)=>{
+        set((state)=>{
+            return{
+                ...state,
+                filter:{
+                    ...state.filter,
+                    priceRange:data[0],
+                }
+            }
+        })
+    },
+
+    setTagsFilter: (data)=>{
+        set((state)=>{
+            return{
+                ...state,
+                filter:{
+                    ...state.filter,
+                    tags: data
+                }
+            }
+        })
+    },
+
+    setSortFilter: (data)=>{
+        set((state)=>{
+            return{
+                ...state,
+                filter:{
+                    ...state.filter,
+                    sortBy:data
+                }
+            }
+        })
+    },
+
+    setPagination:(data)=>{
+        set((state)=>{
+            console.log("hjh")
+            return{
+                ...state,
+                filter:{
+                    ...state.filter,
+                    page: data
+                }
+            }
+        })
     }
 }))
 

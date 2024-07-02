@@ -8,6 +8,7 @@ export async function GET(req){
     const tags = searchParams.get("tags") ? searchParams.get("tags").split(',') : [];
     const sortBy = searchParams.get("sortBy") || "latest";
     const limit =  parseInt(searchParams.get("limit")) || 10;
+    const page = parseInt(searchParams.get("page")) || 0;
     let whereClause={};
     if(category.length>0){
         console.log(category)
@@ -23,10 +24,10 @@ export async function GET(req){
     if(sortBy){
         switch (sortBy){
             case "atoz":
-                orderByClause.push({name:"asc"});
+                orderByClause.push({title:"asc"});
                 break
             case "ztoa":
-                orderByClause.push({name:"desc"});
+                orderByClause.push({title:"desc"});
                 break
             case "latest":
                 orderByClause.push({createdAt:"desc"});
@@ -35,20 +36,34 @@ export async function GET(req){
                 orderByClause.push({createdAt:"asc"})
                 break;
             case "lowtohigh":
-                orderByClause.push({price:"asc"});
+                orderByClause.push({discountPrice:"asc"});
                 break;
             case "hightolow":
-                orderByClause.push({price:"desc"});
+                orderByClause.push({discountPrice:"desc"});
                 break;
         }
     }
+    let skip = limit * (page-1);
     try {
+        const total = await db.product.count({
+            where: whereClause,
+            orderBy:orderByClause,
+        })
         const products = await db.product.findMany({
             where:whereClause,
             orderBy:orderByClause,
-            take: limit
+            skip:skip,
+            take: limit,
+            include:{
+                category:{
+                   select:{
+                       name:true,
+                       id:true
+                   }
+                }
+            }
         });
-        return NextResponse.json(products,{
+        return NextResponse.json({data: products, total: total},{
             status:200
         })
     }catch (e){
