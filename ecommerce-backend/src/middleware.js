@@ -5,7 +5,7 @@ import * as jose from "jose"
 import {verifyUserAction} from "@/app/actions/verifyUser.action";
 import {getTokenData} from "@/helpers/get-token-data";
 export async function middleware(req){
-    const token = req.cookies.get('token')?.value;
+    const token = req.cookies.get('token')?.value || req.headers.get('Authorization');
     if(!token){
         return NextResponse.json({
             message:"User is not authorized"

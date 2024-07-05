@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";
-export const useProduct = create((set) => ({
+import {devtools} from "zustand/middleware";
+export const useProduct = create(devtools((set) => ({
     products:[],
     product:null,
     featuredProducts:[],
@@ -32,6 +33,23 @@ export const useProduct = create((set) => ({
 
     setProductDetail:(data)=>{
       set((state)=>({...state, product:data}))
+    },
+
+    setProductReview:(data)=>{
+      set((state)=>{
+          const currentAvgRating = state.product.avgRating || 0;
+          const currentTotalRating = state.product.totalReview || 0;
+          const newRating = ((currentAvgRating * currentTotalRating) + data.rating) / (currentTotalRating + 1);
+          return {
+              ...state,
+              product: {
+                  ...state.product,
+                  review: [...state.product.review, data],
+                  avgRating: newRating,
+                  totalReview: currentTotalRating+1
+              }
+          }
+      })
     },
 
     setCategoryFilter: (data)=>{
@@ -94,5 +112,5 @@ export const useProduct = create((set) => ({
             }
         })
     }
-}))
+})))
 

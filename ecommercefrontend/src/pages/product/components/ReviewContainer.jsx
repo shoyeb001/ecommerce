@@ -1,5 +1,6 @@
 import User from "@/assets/user.jpg"
 import {Star} from "lucide-react";
+import ReviewForm from "@/pages/product/components/ReviewForm.jsx";
 const ReviewContainer = ({data})=>{
     return (
         <div className="w-full px-3 py-5 flex gap-4">
@@ -16,7 +17,6 @@ const ReviewContainer = ({data})=>{
                     }
                 </div>
                 <div className="text-[14px] text-[#777] mt-3 leading-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</div>
-
             </div>
         </div>
     )

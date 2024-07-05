@@ -21,7 +21,7 @@ const DetailsTab = ()=>{
     const productStore = useProduct()
     return (
         <div className="w-full">
-            <Tabs defaultValue="account" className="w-full">
+            <Tabs defaultValue="details" className="w-full">
                 <TabsList className="grid w-[400px] grid-cols-2">
                     <TabsTrigger value="details">Details</TabsTrigger>
                     <TabsTrigger value="review">Review</TabsTrigger>
@@ -31,7 +31,6 @@ const DetailsTab = ()=>{
                         <h6 className="font-medium text-[18px]">Products Description</h6>
                         <div className="pt-3 text-[14px]">
                             <div dangerouslySetInnerHTML={{__html: productStore?.product?.longDesc}}/>
-
                         </div>
                     </div>
                 </TabsContent>

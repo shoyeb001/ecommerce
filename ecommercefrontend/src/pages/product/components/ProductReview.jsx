@@ -1,5 +1,6 @@
 import ReviewContainer from "@/pages/product/components/ReviewContainer.jsx";
 import {reviewData} from "@/constant/review.js";
+import ReviewForm from "@/pages/product/components/ReviewForm.jsx";
 const ProductReview = ()=>{
 
     return (
@@ -9,6 +10,7 @@ const ProductReview = ()=>{
                     <ReviewContainer data={item}/>
                 ))
             }
+            <ReviewForm/>
         </div>
     );
 }

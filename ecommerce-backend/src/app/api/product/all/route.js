@@ -8,7 +8,7 @@ export async function GET(req){
     const tags = searchParams.get("tags") ? searchParams.get("tags").split(',') : [];
     const sortBy = searchParams.get("sortBy") || "latest";
     const limit =  parseInt(searchParams.get("limit")) || 10;
-    const page = parseInt(searchParams.get("page")) || 0;
+    const page = parseInt(searchParams.get("page")) || 1;
     let whereClause={};
     if(category.length>0){
         console.log(category)

@@ -3,8 +3,13 @@ import {Command, CommandInput} from "@/components/ui/command.jsx";
 import {Heart, Search, ShoppingCart, User} from "lucide-react";
 import {Button} from "@/components/ui/button.jsx";
 import {Link} from "react-router-dom";
+import {useUser} from "@/store/userStore.js";
+import LoggedUserDropdown from "@/layout/components/LoggedUserDropdown.jsx";
+import UnloggedUserDownload from "@/layout/components/UnloggedUserDownload.jsx";
 
 const Navbar = () =>{
+    const userStore = useUser();
+    const {user} = userStore;
     return(
         <div className=" flex gap-8 py-3 w-[85%] m-auto">
             <div className="w-1/6 h-[45px]">
@@ -26,10 +31,13 @@ const Navbar = () =>{
                     <li>
                         <Link to="/">
                             <div className="flex gap-2">
-                                <User size={25}/>
-                                <div className="flex flex-col">
-                                    <span>Account</span>
-                                </div>
+                                    <span>{user? (
+                                        <>
+                                        <LoggedUserDropdown user={user}/>
+                                        </>
+                                    ):(
+                                        <UnloggedUserDownload />
+                                    )}</span>
                             </div>
                         </Link>
                     </li>

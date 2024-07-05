@@ -7,8 +7,13 @@ export async function POST(req){
         firstName: joi.string().required(),
         lastName: joi.string().required(),
         email: joi.string().email().required(),
-        role: joi.string(),
         password: joi.string().min(6).required(),
+        phone: joi.string().min(10).max(10).required(),
+        address: joi.string().required(),
+        city: joi.string().required(),
+        state: joi.string().required(),
+        country: joi.string().required(),
+        pin: joi.string().required(),
     })
     const bodyReq = await req.json();
     const {error} = registerSchema.validate(bodyReq);
@@ -19,7 +24,7 @@ export async function POST(req){
             status: 202
         })
     }
-    const {email, password, firstName, lastName, role} = bodyReq;
+    const {email, password, firstName, lastName, role, phone, address, city, state, country, pin} = bodyReq;
     try {
         const isExits = await db.user.findFirst({
             where:{
@@ -36,6 +41,7 @@ export async function POST(req){
                 status: 403
             })
         }
+
         const hashedPassword = await bcrypt.hash(password, 10);
 
         await db.user.create({
@@ -44,18 +50,25 @@ export async function POST(req){
                 lastName,
                 role: role,
                 password: hashedPassword,
-                email
+                email,
+                phone,
+                address,
+                city,
+                state,
+                country,
+                pin
             }
-        })
-       
+        });
         return NextResponse.json({
-            status: 200,
             message:"Registered Successfully"
+        },{
+            status:200
         })
     }catch (e){
         return NextResponse.json({
-            status: 500,
-            message:e?.message
+            message:"Something went wrong",
+        },{
+            status:500
         })
     }
 }

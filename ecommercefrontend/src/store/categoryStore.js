@@ -1,9 +1,9 @@
 import { create } from 'zustand'
-
-export const useCategory = create((set) => ({
+import {devtools} from "zustand/middleware";
+export const useCategory = create(devtools((set) => ({
     category: [],
     setCategories:(data)=>{
         set(()=>({category:data}));
     }
-}))
+})))
 

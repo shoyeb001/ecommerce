@@ -3,16 +3,17 @@ import {Heart, Star} from "lucide-react";
 import {Button} from "@/components/ui/button.jsx";
 import DetailsTab from "@/pages/product/components/DetailsTab.jsx";
 import {useProduct} from "@/store/productStore.js";
+import ProductImageSlider from "@/pages/product/components/ProductImageSlider.jsx";
 const DetailContainer = ()=>{
     const productStore = useProduct();
     const {product} = productStore;
     return (
         <div className="mt-6">
             <div className="flex gap-5 justify-between">
-                <div className="w-full h-[400px]">
-                    <img src={Image} className="w-full h-full object-contain"/>
+                <div className="w-[50%] relative">
+                    <ProductImageSlider thumbnail={product?.thumbnail} image1={product?.image1} image2={product?.image2} image3={product?.image3}/>
                 </div>
-                <div className="w-full">
+                <div className="w-[50%]">
                     <p className="text-[14px] text-[#777]">{product?.category?.name}</p>
                     <h2 className="text-2xl font-medium text-[#4b5966] mt-3">{product?.title}</h2>
                     <div className="flex gap-1 mt-3 items-center">
