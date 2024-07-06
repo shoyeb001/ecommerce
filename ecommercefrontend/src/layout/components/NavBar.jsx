@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {useUser} from "@/store/userStore.js";
 import LoggedUserDropdown from "@/layout/components/LoggedUserDropdown.jsx";
 import UnloggedUserDownload from "@/layout/components/UnloggedUserDownload.jsx";
+import CartSide from "@/components/cart/CartSide.jsx";
 
 const Navbar = () =>{
     const userStore = useUser();
@@ -56,15 +57,11 @@ const Navbar = () =>{
                         </Link>
                     </li>
                     <li>
-                        <Link to="/mnjuser/companies">
+                        <Link to="#">
                             <div className="flex gap-2 relative">
-                                <ShoppingCart size={25}/>
-                                <div className="flex flex-col">
-                                    <span>Cart</span>
-                                </div>
-                                <div
-                                    className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 start-3 dark:border-gray-900">20
-                                </div>
+
+                                <CartSide/>
+
                             </div>
                         </Link>
                     </li>

@@ -11,6 +11,7 @@ import {useEffect} from "react";
 import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";
 import {Toaster} from "react-hot-toast";
+import Checkout from "@/pages/checkout/Checkout.jsx";
 function App() {
     const userStore = useUser();
     const getUser = async (token)=>{
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/product/:slug" element={<ProductDetails/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/checkout" element={<Checkout/>}/>
             </Route>
         </Routes>
     </>

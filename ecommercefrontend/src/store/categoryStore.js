@@ -5,5 +5,6 @@ export const useCategory = create(devtools((set) => ({
     setCategories:(data)=>{
         set(()=>({category:data}));
     }
-})))
+}),{name:"category store"}
+))
 

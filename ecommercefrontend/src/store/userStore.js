@@ -10,5 +10,6 @@ export const useUser = create(devtools((set) => ({
     logout:()=>{
         set((state)=>({user:null}))
     }
-})))
+}),{name:"user store"}
+))
 

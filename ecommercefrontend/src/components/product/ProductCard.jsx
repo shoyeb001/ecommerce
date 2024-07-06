@@ -1,8 +1,39 @@
-import ProductImg from "@/assets/product.jpg"
 import {Link} from "react-router-dom";
-import {Heart, ShoppingCart, Star} from "lucide-react";
+import {Heart, ShoppingCart} from "lucide-react";
 import {Button} from "@/components/ui/button.jsx";
+import toast from "react-hot-toast";
+import {useState} from "react";
+import {useUser} from "@/store/userStore.js";
+import {callApi} from "@/config/apiConfig.js";
+import {useCart} from "@/store/cartStore.js";
 const ProductCard = ({data})=>{
+    const [isLoading, setIsLoading] = useState(false);
+    const userStore = useUser();
+    const cartStore = useCart();
+    const {cart, addToCart, getTotalAmount} = cartStore;
+    const checkCard = (id)=>{
+        return cart.some(item=>item.productId===id);
+    }
+    const addCart = async(id)=>{
+        try{
+            if(userStore?.user===null){
+                 return toast.error("Signin for add to cart");
+            }
+            setIsLoading(true);
+            const cartData = {
+                productId: id,
+                quantity: 1
+            }
+            const {data} = await callApi({url:"user/cart/add", method:"post", data:cartData, token:userStore.user.token});
+            addToCart(data);
+            getTotalAmount()
+            setIsLoading(false);
+            toast.success("Product added in cart");
+        }catch (e) {
+            setIsLoading(false);
+            toast.error(e?.message)
+        }
+    }
     return (
         <div className="h-full w-full">
             <div className="cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded">
@@ -19,22 +50,19 @@ const ProductCard = ({data})=>{
                         <Link to={`/product/${data?.slug}`} className="block text-[14px]  leading-5 font-normal text-[#4b5966] capitalize hover:text-[#5caf90]"><p className="line-clamp-1">{data?.title}</p></Link>
                     </h5>
                     <div className="mt-[20px] flex flex-col">
-                        {/*<span className="mb-[10px] relative flex">*/}
-                        {/*    <Star size={16} fill={"#f27d0c"} color="#f27d0c"/> <Star size={16} fill={"#f27d0c"} color="#f27d0c"/> <Star size={16} fill={"#f27d0c"} color="#f27d0c"/> <Star size={16} fill={"#f27d0c"} color="#f27d0c"/> <Star size={16} strokeWidth={1}/>*/}
-                        {/*    <span className="text-[14px] text-[#4b5966]">(4.0)</span>*/}
-                        {/*</span>*/}
                         <span>
                             <span className="text-[#4b5966] font-bold text-[14px] mr-[7px]">Rs {data?.discountPrice}</span>
                             <span className="text-[14px] text-[#777] line-through">Rs {data?.price}</span>
                         </span>
-                        {/*<div className="flex gap-12 mt-8">*/}
-                        {/*    <Button className="text-[12px] flex-1"><ShoppingCart size={18}/></Button>*/}
-                        {/*    <Button className="text-[12px] flex-1"><Heart size={18}/></Button>*/}
-                        {/*</div>*/}
                         <div className="flex flex-col gap-4 mt-4">
-                            <Button className="text-[12px]"><ShoppingCart size={18} className="mr-3"/> Add to Cart</Button>
+                            {
+                                checkCard(data?.id)?(
+                                    <Button className="text-[12px]"  disabled={true}>Added to Cart</Button>
+                                ):(
+                                    <Button className="text-[12px]" onClick={()=>addCart(data?.id)} disabled={isLoading}><ShoppingCart size={18} className="mr-3"/> Add to Cart</Button>
+                                )
+                            }
                             <Button className="text-[12px]"><Heart size={18} className="mr-3"/> Add to Wishlist</Button>
-
                         </div>
                     </div>
                 </div>

@@ -112,5 +112,6 @@ export const useProduct = create(devtools((set) => ({
             }
         })
     }
-})))
+}),{name:"product store"}
+))
 
