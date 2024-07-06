@@ -140,7 +140,8 @@ model Order {
   houseName     String
   pin           String
   postOffice    String
-  totalPrice    Int
+  totalPrice    Float
+  gstPrice      Float
   userId        String
   user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   paymentMethod PayMethod?

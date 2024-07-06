@@ -9,8 +9,11 @@ import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {useUser} from "@/store/userStore.js";
-
-
+import {callApi} from "@/config/apiConfig.js";
+import {useOrder} from "@/store/orderStore.js";
+import {useState} from "react";
+import toast from "react-hot-toast";
+import {useCart} from "@/store/cartStore.js";
 const formSchema = z.object({
     paymentMethod: z.enum(["CASH", "ONLINE"], {
         required_error: "You need to select a notification type.",
@@ -46,6 +49,10 @@ const formSchema = z.object({
 const OrderSection = ()=>{
     const userStore = useUser();
     const {user} = userStore;
+    const [isLoading, setIsLoading] = useState(false);
+    const orderStore = useOrder();
+    const cartStore = useCart();
+    const {cart, totalAmount, gstAmount, clearCart} = cartStore;
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -61,9 +68,109 @@ const OrderSection = ()=>{
             postOffice:user?.postOffice ||"",
         },
     })
-    function onSubmit(values) {
 
-        console.log(values)
+    function loadScript(src) {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    }
+
+    async function displayRazorpay(data) {
+        const res = await loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        );
+
+        if (!res) {
+            toast.error("Razorpay SDK failed to load. Are you online?");
+            return;
+        }
+
+        // creating a new order
+        const result = await callApi({url:`razorpay/order?amount=${data.amount}`,method:"get"});
+
+
+        if (!result) {
+            alert("Server error. Are you online?");
+            return;
+        }
+
+        // Getting the order details back
+        const { amount, id: order_id, currency } = result.data;
+
+        const options = {
+            key: "rzp_test_DCVITkOqGT461h", // Enter the Key ID generated from the Dashboard
+            amount: amount.toString(),
+            currency: currency,
+            name: data?.name,
+            image:  "https://cdn.razorpay.com/growth/OIIR4XY42EIbyO/desktop%201.png",
+            order_id: order_id,
+            handler: async function (response) {
+                const resData = {
+                    orderCreationId: order_id,
+                    razorpayPaymentId: response.razorpay_payment_id,
+                    razorpayOrderId: response.razorpay_order_id,
+                    razorpaySignature: response.razorpay_signature,
+                };
+                return resData;
+            },
+            theme: {
+                color: "#61dafb",
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    }
+
+    const addOrderItems = async (id)=>{
+        try {
+            const items = cart.map((item)=>{
+                return {
+                    productId: item.productId,
+                    price: item.product.discountPrice,
+                    quantity: item.quantity,
+                    orderId: id
+                }
+            })
+            const {data} = await callApi({url:`user/order/orderItems?orderId=${id}`, data:items, method:"post", token: user.token});
+            clearCart();
+        }catch (e){
+            toast.error(e?.message)
+        }
+    }
+    async function onSubmit(values) {
+        try{
+            setIsLoading(true)
+            if(values.paymentMethod==="CASH"){
+                const {data} = await callApi({url:"user/order/checkout",method:"post", data:{...values, totalPrice: totalAmount, gstPrice: gstAmount, paymentStatus:"PENDING"}, token:user?.token});
+                orderStore.addOrder(data);
+                await addOrderItems(data?.id);
+            }else if(values.paymentMethod==="ONLINE"){
+                const res = await displayRazorpay({name: user?.name, amount: gstAmount});
+                console.log(res);
+                if(res){
+                    const {data} = await callApi({url:"user/order/checkout",method:"post", data:{...values, totalPrice: totalAmount, gstPrice: gstAmount, paymentStatus:"SUCCESS", paymentId: res?.razorpayPaymentId}, token:user?.token});
+                    orderStore.addOrder(data);
+                    await addOrderItems(data?.id);
+                }
+
+            }
+            setIsLoading(false);
+            toast.success("order submitted successfully");
+        }catch (e) {
+            setIsLoading(false);
+            toast.error(e?.message)
+        }
+
+
     }
     return (
         <div className="w-full">
@@ -128,7 +235,7 @@ const OrderSection = ()=>{
                                     <FormItem className="flex-1">
                                         <FormLabel>First Name</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="First Name" {...field} />
+                                            <Input placeholder="First Name"  {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -248,9 +355,10 @@ const OrderSection = ()=>{
                         </div>
 
                     </div>
-                        <Button type="submit" className=" bg-[#5caf90] hover:bg-[#4b5966]">Checkout Now</Button>
+                        <Button type="submit" className=" bg-[#5caf90] hover:bg-[#4b5966]" disabled={isLoading && cart.length>0}>Checkout Now</Button>
                 </form>
             </Form>
+
         </div>
 );
 }

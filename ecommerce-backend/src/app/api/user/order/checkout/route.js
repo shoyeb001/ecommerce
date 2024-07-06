@@ -17,13 +17,15 @@ export async function POST(req){
             houseName: joi.string().required(),
             pin: joi.string().required(),
             postOffice: joi.string().required(),
-            totalPrice: joi.string().required(),
+            totalPrice: joi.number().required(),
             paymentMethod: joi.string().required(),
             paymentId:joi.string(),
             paymentStatus: joi.string(),
             orderStatus: joi.string(),
+            gstPrice: joi.number().required(),
         });
         const body = await req.json();
+        console.log(body)
         const {error} = checkoutSchema.validate(body);
         if(error){
             return NextResponse.json({
@@ -32,7 +34,7 @@ export async function POST(req){
                 status:202
             })
         }
-        const {firstName, lastName, address, city, state, country, houseName, pin, postOffice, totalPrice, paymentMethod, paymentId, paymentStatus, orderStatus} = body;
+        const {firstName, lastName, address, city, state, country, gstPrice,  houseName, pin, postOffice, totalPrice, paymentMethod, paymentId, paymentStatus, orderStatus} = body;
         const order = await db.order.create({
             data:{
                 firstName,
@@ -44,10 +46,11 @@ export async function POST(req){
                 houseName,
                 pin,
                 postOffice,
-                totalPrice,
+                totalPrice: parseFloat(totalPrice),
                 paymentMethod,
-                paymentId,
+                paymentId: paymentId || "",
                 paymentStatus,
+                gstPrice: parseFloat(gstPrice),
                 orderStatus: OrderStatus.ORDERED,
                 userId:id
             }

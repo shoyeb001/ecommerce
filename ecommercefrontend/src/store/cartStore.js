@@ -38,6 +38,10 @@ export const useCart = create(devtools((set,get) => ({
             cart: state.cart.filter((item)=>item.id!==id)
          }
       })
+   },
+
+   clearCart:()=>{
+      set((state)=>({cart:[], totalAmount:0, gstAmount:0}))
    }
 }),{name: "cart store"}
 ))
