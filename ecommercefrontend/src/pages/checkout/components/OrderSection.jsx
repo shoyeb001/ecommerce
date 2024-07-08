@@ -83,6 +83,14 @@ const OrderSection = ()=>{
         });
     }
 
+    async function submitOnlineCheckout(res, values){
+        const {data} = await callApi({url:`user/order/checkout?r_order_id=${res?.razorpay_order_id}&r_pay_id=${res?.razorpay_payment_id}&r_secret=${res?.razorpay_signature}`,method:"post", data:{...values, totalPrice: totalAmount, gstPrice: gstAmount, paymentStatus:"COMPLETED", paymentId: res?.razorpay_payment_id}, token:user?.token});
+        orderStore.addOrder(data);
+        await addOrderItems(data?.id);
+        toast.success("Order added successfully");
+        setIsLoading(false);
+    }
+
     async function displayRazorpay(data) {
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
@@ -93,16 +101,13 @@ const OrderSection = ()=>{
             return;
         }
 
-        // creating a new order
         const result = await callApi({url:`razorpay/order?amount=${data.amount}`,method:"get"});
-
 
         if (!result) {
             alert("Server error. Are you online?");
             return;
         }
 
-        // Getting the order details back
         const { amount, id: order_id, currency } = result.data;
 
         const options = {
@@ -113,13 +118,8 @@ const OrderSection = ()=>{
             image:  "https://cdn.razorpay.com/growth/OIIR4XY42EIbyO/desktop%201.png",
             order_id: order_id,
             handler: async function (response) {
-                const resData = {
-                    orderCreationId: order_id,
-                    razorpayPaymentId: response.razorpay_payment_id,
-                    razorpayOrderId: response.razorpay_order_id,
-                    razorpaySignature: response.razorpay_signature,
-                };
-                return resData;
+                await submitOnlineCheckout(response, data?.values)
+
             },
             theme: {
                 color: "#61dafb",
@@ -153,17 +153,18 @@ const OrderSection = ()=>{
                 const {data} = await callApi({url:"user/order/checkout",method:"post", data:{...values, totalPrice: totalAmount, gstPrice: gstAmount, paymentStatus:"PENDING"}, token:user?.token});
                 orderStore.addOrder(data);
                 await addOrderItems(data?.id);
+                setIsLoading(false);
+
             }else if(values.paymentMethod==="ONLINE"){
-                const res = await displayRazorpay({name: user?.name, amount: gstAmount});
-                console.log(res);
-                if(res){
-                    const {data} = await callApi({url:"user/order/checkout",method:"post", data:{...values, totalPrice: totalAmount, gstPrice: gstAmount, paymentStatus:"SUCCESS", paymentId: res?.razorpayPaymentId}, token:user?.token});
-                    orderStore.addOrder(data);
-                    await addOrderItems(data?.id);
-                }
+                await displayRazorpay({name: user?.name, amount: gstAmount, values });
+                // console.log(res);
+                // if(res){
+                //     const {data} = await callApi({url:"user/order/checkout",method:"post", data:{...values, totalPrice: totalAmount, gstPrice: gstAmount, paymentStatus:"SUCCESS", paymentId: res?.razorpayPaymentId}, token:user?.token});
+                //     orderStore.addOrder(data);
+                //     await addOrderItems(data?.id);
+                // }
 
             }
-            setIsLoading(false);
             toast.success("order submitted successfully");
         }catch (e) {
             setIsLoading(false);

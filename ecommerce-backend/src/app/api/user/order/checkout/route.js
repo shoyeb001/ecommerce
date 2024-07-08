@@ -3,6 +3,7 @@ import {getTokenData} from "@/helpers/get-token-data";
 import joi from "joi";
 import db from "@/lib/db";
 import {OrderStatus} from "@prisma/client";
+import * as crypto from "node:crypto";
 
 export async function POST(req){
     try {
@@ -35,6 +36,27 @@ export async function POST(req){
             })
         }
         const {firstName, lastName, address, city, state, country, gstPrice,  houseName, pin, postOffice, totalPrice, paymentMethod, paymentId, paymentStatus, orderStatus} = body;
+        if(paymentMethod==="ONLINE"){
+            const { searchParams } = new URL(req.url);
+            const r_order_id = searchParams.get("r_order_id");
+            const r_pay_id = searchParams.get("r_pay_id");
+            const r_secret = searchParams.get("r_secret");
+            const body = r_order_id + "|" + r_pay_id;
+
+            const expectedSignature = crypto
+                .createHmac("sha256", process.env.RAZORPAY_SECRET)
+                .update(body.toString())
+                .digest("hex");
+
+            const isAuthentic = expectedSignature === r_secret;
+            if(!isAuthentic){
+                return NextResponse.json({
+                    message:"Invalid payment Data"
+                },{
+                    status: 202
+                })
+            }
+        }
         const order = await db.order.create({
             data:{
                 firstName,
