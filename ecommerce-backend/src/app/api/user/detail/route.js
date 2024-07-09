@@ -17,6 +17,22 @@ export async function GET(req){
                 id:id,
                 role: role
             },
+            select:{
+                firstName: true,
+                lastName: true,
+                email: true,
+                password: false,
+                avatar: true,
+                phone: true,
+                address: true,
+                city: true,
+                state: true,
+                country: true,
+                houseName: true,
+                pin: true,
+                postOffice: true,
+                role:true,
+            }
         })
         return NextResponse.json(user,{
             status:200

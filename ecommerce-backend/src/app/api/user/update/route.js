@@ -1,10 +1,10 @@
 import joi from "joi";
 import {NextResponse} from "next/server";
 import db from "@/lib/db";
+import {getTokenData} from "@/helpers/get-token-data";
 
 export async function PUT(req){
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+    const {id} = await getTokenData(req);
     const body = await req.json();
     const userSchema = joi.object({
         firstName: joi.string(),
@@ -17,8 +17,9 @@ export async function PUT(req){
         state: joi.string(),
         country: joi.string(),
         houseName: joi.string(),
-        pin: joi.string(),
+        pin: joi.string().min(6).max(6),
         postOffice: joi.string(),
+        phone: joi.string().min(10).max(10)
     });
     const validate = userSchema.validate(body);
     if(!validate){
@@ -29,15 +30,29 @@ export async function PUT(req){
         })
     }
     try {
-        await db.user.update({
+        const userData = await db.user.update({
             where:{
                 id: id
             },
-            data: body
+            data: body,
+            select:{
+                firstName: true,
+                lastName: true,
+                email: true,
+                password: false,
+                avatar: true,
+                phone: true,
+                address: true,
+                city: true,
+                state: true,
+                country: true,
+                houseName: true,
+                pin: true,
+                postOffice: true,
+                role:true,
+            }
         })
-        return NextResponse.json({
-            message:"User detail updated successfully"
-        },{
+        return NextResponse.json(userData,{
             status:200
         })
     }catch (e) {

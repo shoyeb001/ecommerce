@@ -4,6 +4,7 @@ import joi from "joi";
 import db from "@/lib/db";
 import {OrderStatus} from "@prisma/client";
 import * as crypto from "node:crypto";
+import {randomUUID} from "node:crypto";
 
 export async function POST(req){
     try {
@@ -74,7 +75,8 @@ export async function POST(req){
                 paymentStatus,
                 gstPrice: parseFloat(gstPrice),
                 orderStatus: OrderStatus.ORDERED,
-                userId:id
+                userId:id,
+                orderId: Math.random().toString(36).slice(-8)
             }
         });
         return  NextResponse.json(order,{

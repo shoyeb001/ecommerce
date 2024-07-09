@@ -131,6 +131,7 @@ model Review {
 
 model Order {
   id            String       @id @default(dbgenerated("concat('order_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  orderId       String
   firstName     String
   lastName      String
   address       String
