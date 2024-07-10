@@ -24,7 +24,11 @@ export async function GET(req){
                         id:true
                     }
                 },
-                review:true
+                review:{
+                    include:{
+                        user:true
+                    }
+                }
             }
         });
         const totalReview = product?.review?.length;

@@ -38,6 +38,9 @@ export async function POST(req){
                 userId:id,
                 description,
                 rating
+            },
+            include:{
+                user:true
             }
         })
         return NextResponse.json(newReview,{
