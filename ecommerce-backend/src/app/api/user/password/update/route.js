@@ -39,13 +39,16 @@ export async function PUT(req){
             })
         }
         const hashedPassword = await bcrypt.hash(newPassword, 10);
-        await db.user.update({
+        const userData = await db.user.update({
             where:{
                 id: id
             },
             data:{
                 password: hashedPassword
             }
+        })
+        return NextResponse.json(userData,{
+            status: 200
         })
     }catch (e) {
         return NextResponse.json({

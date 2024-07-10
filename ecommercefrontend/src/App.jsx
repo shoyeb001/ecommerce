@@ -1,4 +1,3 @@
-
 import {Routes, Route} from "react-router-dom";
 import Layout from "@/layout/Layout.jsx";
 import Home from "@/pages/home/Home.jsx";
@@ -16,6 +15,8 @@ import UserProfile from "@/pages/users/UserProfile.jsx";
 import UserAuthenticateRoute from "@/authenticateRoutes/UserAuthenticateRoute.jsx";
 import ViewOrders from "@/pages/users/ViewOrders.jsx";
 import Invoice from "@/pages/invoice/Invoice.jsx";
+import UploadUserImage from "@/pages/users/UploadUserImage.jsx";
+import ChangePassword from "@/pages/users/ChangePassword.jsx";
 function App() {
     const userStore = useUser();
     const getUser = async (token)=>{
@@ -60,7 +61,16 @@ function App() {
                         <ViewOrders/>
                     </UserAuthenticateRoute>
                 }/>
-
+                <Route path="/account/change-profile" element={
+                    <UserAuthenticateRoute>
+                        <UploadUserImage/>
+                    </UserAuthenticateRoute>
+                }/>
+                <Route path="/account/change-password" element={
+                    <UserAuthenticateRoute>
+                        <ChangePassword/>
+                    </UserAuthenticateRoute>
+                }/>
             </Route>
             <Route path="/order/invoice/:id" element={
                 <UserAuthenticateRoute>

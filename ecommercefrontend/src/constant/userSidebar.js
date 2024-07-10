@@ -1,4 +1,4 @@
-import { BriefcaseBusiness, CircleUser,SquareAsterisk,LogOut  } from 'lucide-react';
+import { BriefcaseBusiness, CircleUser,SquareAsterisk,LogOut, Upload  } from 'lucide-react';
 
 export const userSidebarLinks = [
     {
@@ -12,10 +12,16 @@ export const userSidebarLinks = [
         icon: BriefcaseBusiness
     },
     {
+        title:"Upload Profile",
+        link:"/account/change-profile",
+        icon: Upload,
+    },
+    {
         title:"Change Password",
         link:"/account/change-password",
         icon: SquareAsterisk,
     },
+
     {
         title: "Logout",
         link:"/account/logout",
