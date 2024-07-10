@@ -12,6 +12,10 @@ import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";
 import {Toaster} from "react-hot-toast";
 import Checkout from "@/pages/checkout/Checkout.jsx";
+import UserProfile from "@/pages/users/UserProfile.jsx";
+import UserAuthenticateRoute from "@/authenticateRoutes/UserAuthenticateRoute.jsx";
+import ViewOrders from "@/pages/users/ViewOrders.jsx";
+import Invoice from "@/pages/invoice/Invoice.jsx";
 function App() {
     const userStore = useUser();
     const getUser = async (token)=>{
@@ -41,8 +45,28 @@ function App() {
                 <Route path="/product/:slug" element={<ProductDetails/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/checkout" element={<Checkout/>}/>
+                <Route path="/checkout" element={
+                    <UserAuthenticateRoute>
+                        <Checkout/>
+                    </UserAuthenticateRoute>
+                }/>
+                <Route path="/account/my-profile" element={
+                    <UserAuthenticateRoute>
+                        <UserProfile/>
+                    </UserAuthenticateRoute>
+                }/>
+                <Route path="/account/my-order" element={
+                    <UserAuthenticateRoute>
+                        <ViewOrders/>
+                    </UserAuthenticateRoute>
+                }/>
+
             </Route>
+            <Route path="/order/invoice/:id" element={
+                <UserAuthenticateRoute>
+                    <Invoice/>
+                </UserAuthenticateRoute>
+            }/>
         </Routes>
     </>
   )

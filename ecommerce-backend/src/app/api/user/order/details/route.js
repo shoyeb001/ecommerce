@@ -4,7 +4,7 @@ import db from "@/lib/db";
 
 export async function GET(req){
     try {
-        const id = await getTokenData(req)
+        const {id} = await getTokenData(req)
         const { searchParams } = new URL(req.url);
         const orderId = searchParams.get("orderId");
         if(!orderId){

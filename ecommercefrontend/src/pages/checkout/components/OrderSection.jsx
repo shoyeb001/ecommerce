@@ -88,6 +88,7 @@ const OrderSection = ()=>{
         orderStore.addOrder(data);
         await addOrderItems(data?.id);
         toast.success("Order added successfully");
+        orderStore.addOrder(data);
         setIsLoading(false);
     }
 
@@ -141,6 +142,7 @@ const OrderSection = ()=>{
                 }
             })
             const {data} = await callApi({url:`user/order/orderItems?orderId=${id}`, data:items, method:"post", token: user.token});
+            orderStore.addOrder(data);
             clearCart();
         }catch (e){
             toast.error(e?.message)
@@ -157,12 +159,6 @@ const OrderSection = ()=>{
 
             }else if(values.paymentMethod==="ONLINE"){
                 await displayRazorpay({name: user?.name, amount: gstAmount, values });
-                // console.log(res);
-                // if(res){
-                //     const {data} = await callApi({url:"user/order/checkout",method:"post", data:{...values, totalPrice: totalAmount, gstPrice: gstAmount, paymentStatus:"SUCCESS", paymentId: res?.razorpayPaymentId}, token:user?.token});
-                //     orderStore.addOrder(data);
-                //     await addOrderItems(data?.id);
-                // }
 
             }
             toast.success("order submitted successfully");

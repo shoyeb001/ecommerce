@@ -12,7 +12,7 @@ import {
 import {useUser} from "@/store/userStore.js";
 import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 const LoggedUserDropdown = ()=>{
     const userStore = useUser();
     const {user, logout} = userStore;
@@ -37,7 +37,7 @@ const LoggedUserDropdown = ()=>{
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuItem>
-                    My Account
+                    <Link to="/account/my-profile">My Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer" onClick={logoutUser}>
                     Logout
