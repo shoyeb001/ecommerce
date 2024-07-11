@@ -14,6 +14,7 @@ import {callApi} from "@/config/apiConfig.js";
 import {debounce} from "@/lib/debounce.js";
 import {useCallback} from "react";
 import {useEffect} from "react";
+import MobileSidebar from "@/layout/components/MobileSidebar.jsx";
 
 const Navbar = () =>{
     const userStore = useUser();
@@ -44,7 +45,10 @@ const Navbar = () =>{
 
 
     return(
-        <div className="md:flex md:gap-8 py-3 w-[85%] m-auto">
+        <div className="flex gap-8 py-3 w-[85%] m-auto">
+            <div className="md:hidden w-2/6">
+                <MobileSidebar/>
+            </div>
             <div className="md:w-1/6 md:h-[45px] hidden md:block">
                 <img src={Logo} className="w-[144px] "/>
             </div>
@@ -67,7 +71,7 @@ const Navbar = () =>{
                     }
                 </div>
             </div>
-            <div className="md:w-2/6 w-full">
+            <div className="md:w-2/6 w-4/6">
                 <ul className="flex items-center justify-end gap-x-2">
                     <li>
                         <Link to="/">
