@@ -13,8 +13,8 @@ const TrackOrder = ()=>{
     const checkStatus = async ()=>{
         try{
             setIsLoading(true)
-            const status = await callApi({url:`user/order/track?orderId=${orderId}`, method:"get", token:userStore?.token});
-            setStatus(status);
+            const {data} = await callApi({url:`user/order/track?orderId=${orderId}`, method:"get", token:userStore?.token});
+            setStatus(data);
             setIsLoading(false)
         }catch (e) {
             setIsLoading(false)
@@ -29,7 +29,6 @@ const TrackOrder = ()=>{
             </div>
             {
                 status &&  <OrderStatus status={status}/>
-
             }
 
         </>

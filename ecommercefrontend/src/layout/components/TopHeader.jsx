@@ -5,6 +5,7 @@ import {
     NavigationMenuList,
 } from "@/components/ui/navigation-menu"
 import {useUser} from "@/store/userStore.js";
+import {Link} from "react-router-dom";
 const TopHeader = ()=>{
 
     return (
@@ -25,7 +26,7 @@ const TopHeader = ()=>{
                 <p className="text-center">World Best Shopping Platfrom For Dialy Usage</p>
             </div>
             <div className='flex-1 w-1/5 flex justify-end text-[14px]'>
-                <li className="inline mr-5"><a href="#">Track Order</a></li>
+                <li className="inline mr-5"><Link to="/order/track">Track Order</Link></li>
                 <li className="inline mr-5"><a href="#">Help</a></li>
                 <li className="inline"><a href="#">Contact Us</a></li>
             </div>
