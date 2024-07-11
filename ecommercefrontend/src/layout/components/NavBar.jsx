@@ -7,9 +7,11 @@ import {useUser} from "@/store/userStore.js";
 import LoggedUserDropdown from "@/layout/components/LoggedUserDropdown.jsx";
 import UnloggedUserDownload from "@/layout/components/UnloggedUserDownload.jsx";
 import CartSide from "@/components/cart/CartSide.jsx";
+import {useWishlist} from "@/store/wishlistStore.js";
 
 const Navbar = () =>{
     const userStore = useUser();
+    const wishlistStore = useWishlist()
     const {user} = userStore;
     return(
         <div className=" flex gap-8 py-3 w-[85%] m-auto">
@@ -43,14 +45,15 @@ const Navbar = () =>{
                         </Link>
                     </li>
                     <li>
-                        <Link to="/mnjuser/jobs">
+                        <Link to="/wishlist">
                             <div className="flex gap-2 relative">
                                 <Heart size={25}/>
                                 <div className="flex flex-col">
                                     <span>Wishlist</span>
                                 </div>
                                 <div
-                                    className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 start-3 dark:border-gray-900">20
+                                    className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 start-3 dark:border-gray-900">
+                                    {wishlistStore?.wishlist?.length}
                                 </div>
 
                             </div>

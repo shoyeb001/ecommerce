@@ -17,6 +17,8 @@ import ViewOrders from "@/pages/users/ViewOrders.jsx";
 import Invoice from "@/pages/invoice/Invoice.jsx";
 import UploadUserImage from "@/pages/users/UploadUserImage.jsx";
 import ChangePassword from "@/pages/users/ChangePassword.jsx";
+import CheckOrderStatus from "@/pages/orderstatus/CheckOrderStatus.jsx";
+import Wishlist from "@/pages/wishlist/Wishlist.jsx";
 function App() {
     const userStore = useUser();
     const getUser = async (token)=>{
@@ -36,7 +38,7 @@ function App() {
   return (
     <>
         <Toaster
-            position="bottom-right"
+            position="top-right"
             reverseOrder={false}
         />
         <Routes>
@@ -49,6 +51,11 @@ function App() {
                 <Route path="/checkout" element={
                     <UserAuthenticateRoute>
                         <Checkout/>
+                    </UserAuthenticateRoute>
+                }/>
+                <Route path="/order/track" element={
+                    <UserAuthenticateRoute>
+                        <CheckOrderStatus/>
                     </UserAuthenticateRoute>
                 }/>
                 <Route path="/account/my-profile" element={
@@ -69,6 +76,11 @@ function App() {
                 <Route path="/account/change-password" element={
                     <UserAuthenticateRoute>
                         <ChangePassword/>
+                    </UserAuthenticateRoute>
+                }/>
+                <Route path="/wishlist" element={
+                    <UserAuthenticateRoute>
+                        <Wishlist/>
                     </UserAuthenticateRoute>
                 }/>
             </Route>

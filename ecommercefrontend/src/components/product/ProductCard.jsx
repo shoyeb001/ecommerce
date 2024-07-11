@@ -6,15 +6,36 @@ import {useState} from "react";
 import {useUser} from "@/store/userStore.js";
 import {callApi} from "@/config/apiConfig.js";
 import {useCart} from "@/store/cartStore.js";
+import {useWishlist} from "@/store/wishlistStore.js";
 const ProductCard = ({data})=>{
     const [isLoading, setIsLoading] = useState(false);
+    const [wishLoading, setWishLoading] = useState(false)
     const userStore = useUser();
     const cartStore = useCart();
+    const wishlistStore = useWishlist();
+    const {addWishlist} = wishlistStore;
     const {cart, addToCart, getTotalAmount} = cartStore;
     const checkCard = (id)=>{
         return cart.some(item=>item.productId===id);
     }
-    const addCart = async(id)=>{
+    const addToWishlist = async(id)=>{
+        try {
+            if(userStore?.user===null){
+                return toast.error("Signin for add to wishlist")
+            }
+            setWishLoading(true);
+            const {data} = await callApi({url:"user/wishlist/add", method:"post", token:userStore.user.token, data:{
+                productId:id
+            }});
+            setWishLoading(false);
+            addWishlist(data);
+            toast.success("Wishlist added successfully")
+        }catch (e) {
+            setWishLoading(false);
+            toast.error(e?.response?.data?.message)
+        }
+    }
+     const addCart = async(id)=>{
         try{
             if(userStore?.user===null){
                  return toast.error("Signin for add to cart");
@@ -62,7 +83,7 @@ const ProductCard = ({data})=>{
                                     <Button className="text-[12px]" onClick={()=>addCart(data?.id)} disabled={isLoading}><ShoppingCart size={18} className="mr-3"/> Add to Cart</Button>
                                 )
                             }
-                            <Button className="text-[12px]"><Heart size={18} className="mr-3"/> Add to Wishlist</Button>
+                            <Button className="text-[12px]" onClick={()=>addToWishlist(data?.id)} disabled={wishLoading}><Heart size={18} className="mr-3"/> Add to Wishlist</Button>
                         </div>
                     </div>
                 </div>
