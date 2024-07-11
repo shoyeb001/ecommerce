@@ -3,11 +3,11 @@ import {Link} from "react-router-dom";
 
 const CategoryCard = ({data})=>{
     return(
-        <div className="h-[150px] w-[150px] shadow">
+        <div className="md:h-[150px] h-[80px] md:w-[150px] w-[90px] shadow">
             <Link to={`/category/${data?.slug}`}>
                 <div className="flex flex-col justify-center p-6 h-full">
                     <img src={data?.image || Fruit}/>
-                    <p className="text-center font-bold">{data?.name}</p>
+                    <p className="text-center md:font-bold font-medium text-[10px] md:text-[16px]">{data?.name}</p>
                 </div>
             </Link>
         </div>

@@ -44,11 +44,11 @@ const Navbar = () =>{
 
 
     return(
-        <div className=" flex gap-8 py-3 w-[85%] m-auto">
-            <div className="w-1/6 h-[45px]">
+        <div className="md:flex md:gap-8 py-3 w-[85%] m-auto">
+            <div className="md:w-1/6 md:h-[45px] hidden md:block">
                 <img src={Logo} className="w-[144px] "/>
             </div>
-            <div className="w-3/6 relative">
+            <div className="md:w-3/6 md:relative hidden md:block">
                 <div className="relative w-full h-[50px] flex items-center  p-2 border-[1px] border-solid border-[#eee] justify-between bg-transparent">
                     <input
                         className="block w-full rounded-md border-0 pl-8 py-1.5 focus:outline-none focus:ring-transparent"
@@ -67,8 +67,8 @@ const Navbar = () =>{
                     }
                 </div>
             </div>
-            <div className="w-2/6 ">
-                <ul className="flex items-center justify-end gap-x-8">
+            <div className="md:w-2/6 w-full">
+                <ul className="flex items-center justify-end gap-x-2">
                     <li>
                         <Link to="/">
                             <div className="flex gap-2">
@@ -87,7 +87,7 @@ const Navbar = () =>{
                             <div className="flex gap-2 relative">
                                 <Heart size={25}/>
                                 <div className="flex flex-col">
-                                    <span>Wishlist</span>
+                                    <span className="hidden md:block">Wishlist</span>
                                 </div>
                                 <div
                                     className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 start-3 dark:border-gray-900">

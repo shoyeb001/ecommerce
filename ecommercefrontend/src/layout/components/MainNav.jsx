@@ -10,8 +10,8 @@ import {
 import {Link} from "react-router-dom";
 const MainNav = () =>{
     return(
-        <div className="w-[85%] m-auto flex items-center justify-center">
-            <NavigationMenu>
+        <div className="w-[85%] m-auto md:flex md:items-center md:justify-center">
+            <NavigationMenu className="md:block hidden">
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <Link to="/" legacyBehavior passHref>

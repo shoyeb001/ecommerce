@@ -32,20 +32,20 @@ const Home = ()=>{
             <div className="mt-[70px]">
                 <h2 className="capitalize text-2xl font-bold mb-2">Day of the <span
                     className="text-[#5caf90]">deal</span></h2>
-                <p className="text-[14px] text-[#777] leading-[18p] leading-3 mb-[45px]">Don't wait. The time will never
+                <p className="text-[14px] text-[#777] leading-3 mb-[45px]">Don't wait. The time will never
                     be just right.</p>
                 <ProductSlider products={productStore?.featuredProducts}/>
             </div>
-            <div className="mt-[70px]">
+            <div className="md:mt-[70px] mt-[40px]">
                 <HomerBanner/>
             </div>
-            <div className="mt-[70px]">
+            <div className="md:mt-[70px] mt-[40px]">
                 <h2 className="capitalize text-2xl font-bold mb-2">New <span
                     className="text-[#5caf90]">Arrivals</span></h2>
                 <p className="text-[14px] text-[#777] leading-[18p] leading-3 mb-[45px]">Shop online for new arrivals and get free shipping!</p>
                 <ProductContainer products={productStore?.products}/>
             </div>
-            <div className="mt-[70px]">
+            <div className="md:mt-[70px] mt-[40px]">
                 <Features/>
             </div>
         </div>

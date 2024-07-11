@@ -18,7 +18,7 @@ const CategorySlider = ()=>{
         getCategories();
     },[])
     return (
-        <div className="mt-[100px]">
+        <div className="md:mt-[100px] mt-[40px]">
             <Carousel
                 opts={{
                     align: "start",
@@ -27,7 +27,7 @@ const CategorySlider = ()=>{
             >
                 <CarouselContent>
                     {categoryStore?.category?.map((item, index) => (
-                        <CarouselItem key={index} className="md:basis-1/4 lg:basis-1/6">
+                        <CarouselItem key={index} className="basis-1/3 md:basis-1/4 lg:basis-1/6">
                           <CategoryCard data={item}/>
                         </CarouselItem>
                     ))}

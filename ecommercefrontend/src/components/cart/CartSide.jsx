@@ -35,7 +35,7 @@ const CartSide = ()=>{
                 <div className="flex gap-2 relative">
                     <ShoppingCart size={25}/>
                     <div className="flex flex-col  font-body">
-                        <span>Cart</span>
+                        <span className="hidden md:block">Cart</span>
                     </div>
                     <div
                         className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 start-3 dark:border-gray-900">{cart?.length}

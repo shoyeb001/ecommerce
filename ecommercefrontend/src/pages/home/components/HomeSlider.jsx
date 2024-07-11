@@ -20,7 +20,7 @@ const HomeSlider = ()=>{
             <CarouselContent>
                 {homeSliderData.map((item, index) => (
                     <CarouselItem key={index}>
-                            <Card className="w-full h-[450px]">
+                            <Card className="w-full h-[200px] md:h-[450px]">
                                     <FistSliderContent data={item}/>
                             </Card>
                     </CarouselItem>
