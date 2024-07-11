@@ -52,11 +52,11 @@ const ShopContainer = ()=>{
 
     return(
         <div className="mt-6">
-            <div className="w-full flex gap-4">
-                <div className="w-[25%]">
+            <div className="w-full flex gap-4 flex-col md:flex-row">
+                <div className="md:w-[25%] w-full order-2 md:order-1">
                     <ProductFilter filter={getShopProducts}/>
                 </div>
-                <div className="w-[75%]">
+                <div className="md:w-[75%] w-full order-1 md:order-2">
                     <div className="flex justify-end items-end mb-6">
                         <Select onValueChange={(v)=> setSortFilter(v)}>
                             <SelectTrigger className="w-[180px]">
@@ -73,7 +73,7 @@ const ShopContainer = ()=>{
                             </SelectContent>
                         </Select>
                     </div>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                         {
                            products && products?.map((item)=>(
                                 <ProductCard data={item}/>
