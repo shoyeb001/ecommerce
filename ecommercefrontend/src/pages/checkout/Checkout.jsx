@@ -10,9 +10,9 @@ const Checkout = ()=>{
     return(
         <div className="w-full mt-5">
             <BreadCrump title="Order Checkout" page="Order Checkout" links={links}/>
-            <div className="flex gap-6 w-full mt-[60px]">
+            <div className="flex flex-col md:flex-row md:gap-6 gap-3 w-full mt-[60px]">
                 <CheckoutProduct/>
-                <div className="w-[70%]">
+                <div className="md:w-[70%] w-full">
                     <OrderSection/>
                 </div>
             </div>

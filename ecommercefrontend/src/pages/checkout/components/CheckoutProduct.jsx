@@ -5,7 +5,7 @@ const CheckoutProduct = ()=>{
     const cartStore = useCart();
     const {cart, totalAmount, gstAmount} = cartStore;
     return (
-        <div className="w-[30%] border-[1px] border-solid border-[#eee] h-full">
+        <div className="md:w-[30%] w-full border-[1px] border-solid border-[#eee] h-full">
             <div className="px-3 py-1">
                 <h5 className="text-[18px] text-[#4b5966] font-semibold">Summary</h5>
                 <div className="flex text-[15px] mt-3 text-[#777] justify-between">
