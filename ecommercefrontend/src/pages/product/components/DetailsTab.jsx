@@ -22,7 +22,7 @@ const DetailsTab = ()=>{
     return (
         <div className="w-full">
             <Tabs defaultValue="details" className="w-full">
-                <TabsList className="grid w-[400px] grid-cols-2">
+                <TabsList className="grid md:w-[400px] w-full grid-cols-2">
                     <TabsTrigger value="details">Details</TabsTrigger>
                     <TabsTrigger value="review">Review</TabsTrigger>
                 </TabsList>

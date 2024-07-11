@@ -9,11 +9,11 @@ const DetailContainer = ()=>{
     const {product} = productStore;
     return (
         <div className="mt-6">
-            <div className="flex gap-5 justify-between">
-                <div className="w-[50%] relative">
+            <div className="md:flex md:gap-5 md:justify-between">
+                <div className="md:w-[50%] w-full relative">
                     <ProductImageSlider thumbnail={product?.thumbnail} image1={product?.image1} image2={product?.image2} image3={product?.image3}/>
                 </div>
-                <div className="w-[50%]">
+                <div className="md:w-[50%] w-full">
                     <p className="text-[14px] text-[#777]">{product?.category?.name}</p>
                     <h2 className="text-2xl font-medium text-[#4b5966] mt-3">{product?.title}</h2>
                     <div className="flex gap-1 mt-3 items-center">

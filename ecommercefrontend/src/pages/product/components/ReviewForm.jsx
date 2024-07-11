@@ -32,7 +32,7 @@ const ReviewForm = ()=>{
     }
     return(
         <div className="w-full p-5">
-            <h4 className="font-bold text-2xl mb-3">Add a Review</h4>
+            <h4 className="font-bold md:text-2xl text-md mb-3">Add a Review</h4>
             <div className="flex gap-4 items-center">
                 <h6 className="font-medium text-[16px] text-[#777]">Your Rating:</h6>
                 <div className="flex gap-1">

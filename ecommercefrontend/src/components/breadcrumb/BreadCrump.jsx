@@ -11,10 +11,10 @@ import {Link} from "react-router-dom";
 const BreadCrump = ({title, page, links})=>{
     return (
         <>
-        <Card className="w-full py-4 px-4  rounded">
+        <Card className="w-full md:py-4 py-2 md:px-4 px-2 rounded">
             <div className="flex justify-between">
                 <div>
-                    <h6 className="font-bold">{title}</h6>
+                    <h6 className="font-bold md:text-[15px] text-[10px]">{title}</h6>
                 </div>
                 <div>
                     <Breadcrumb>
