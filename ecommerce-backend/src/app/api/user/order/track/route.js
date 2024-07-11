@@ -14,7 +14,11 @@ export async function GET(req){
                 orderId: orderId
             },
             select:{
-                orderStatus: true
+                orderStatus: true,
+                orderId:true,
+                firstName:true,
+                lastName:true,
+                createdAt:true
             }
         });
         if(!status){
