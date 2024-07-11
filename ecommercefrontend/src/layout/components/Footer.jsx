@@ -6,7 +6,7 @@ import {Facebook, Instagram, Mail, MapPin, Phone, Twitch, Twitter} from 'lucide-
 const Footer = ()=>{
     return (
         <div className="w-full bg-[#fff] border-t-[1px] border-solid border-[#eee] mt-[40px] font-body">
-            <div className="w-[85%] m-auto flex md:flex-wrap md:gap-8 flex-col gap-4 justify-between pt-[70px] pb-[70px]">
+            <div className="w-[85%] m-auto flex md:flex-wrap md:gap-8 flex-col md:flex-row gap-4 justify-between pt-[70px] pb-[70px]">
                 <div className="flex-1">
                     <img src={Image} className="w-150px"/>
                     <p className="pt-8 text-[14px] text-[#777] pb-8">Grabit is the biggest market of grocery products.

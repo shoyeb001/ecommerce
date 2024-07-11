@@ -9,28 +9,28 @@ const OrderCard = ({order}) => {
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
                     <AccordionTrigger className="text-justify hover:no-underline">
-                        <div className="p-4 w-full flex gap-4">
-                            <div className="flex w-[50%] justify-between">
+                        <div className="p-4 w-full flex flex-col md:flex-row gap-4">
+                            <div className="flex flex-col md:flex-row md:w-[50%] w-full md:justify-between">
                                 <div className="flex gap-5">
-                                    <div className="flex flex-col gap-1">
+                                    <div className="flex md:flex-col  gap-1">
                                         <span>Order Id</span>
                                         <span className="text-[#777]">#{order?.orderId}</span>
                                     </div>
                                 </div>
                                 <div className="flex gap-5">
-                                    <div className="flex flex-col gap-1">
+                                    <div className="flex md:flex-col gap-1">
                                         <span>Order Placed</span>
                                         <span className="text-[#777]">{dateFormat(order?.createdAt)}</span>
                                     </div>
                                 </div>
                                 <div className="flex gap-5">
-                                    <div className="flex flex-col gap-1">
+                                    <div className="flex md:flex-col gap-1">
                                         <span>Total Amount</span>
                                         <span>Rs: {order?.gstPrice}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-[50%] flex items-end justify-end gap-3">
+                            <div className="md:w-[50%] w-full flex md:items-end md:justify-end gap-3">
                                <Link to={`/order/invoice/${order?.id}`}>
                                    <Button variant="outline">View Invoice</Button>
                                </Link>
@@ -41,14 +41,14 @@ const OrderCard = ({order}) => {
                         {
                             order?.OrderItems?.map((item, index) => (
                                 <div className="card border-[1px] border-solid border-[#eee]">
-                                    <div className="flex gap-4 p-4">
-                                        <div className="w-[25%] h-[200] overflow-hidden">
+                                    <div className="flex gap-4 p-4 flex-col md:flex-row">
+                                        <div className="md:w-[25%] w-full h-[200] overflow-hidden">
                                             <img src={item?.product?.thumbnail} alt="product" className="w-full h-full object-contain"/>
                                         </div>
-                                        <div className="w-[75%]">
-                                            <div className="flex justify-between w-full">
-                                                <h6 className="font-medium w-auto text-[18px]">{item?.product?.title}</h6>
-                                                <span className="font-medium text-[18px]">Rs {item?.product?.discountPrice?.toFixed(2)}</span>
+                                        <div className="md:w-[75%] w-full">
+                                            <div className="flex md:justify-between flex-col md:flex-row w-full">
+                                                <h6 className="font-medium w-auto text-[18px] line-clamp-2">{item?.product?.title}</h6>
+                                                <span className="font-medium text-[18px] mt-2 md:mt-0">Rs {item?.product?.discountPrice?.toFixed(2)}</span>
                                             </div>
                                             <p className="text-[#777] mt-3">{item?.product?.description}</p>
                                             <Link to={`/product/${item?.product?.slug}`}>

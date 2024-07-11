@@ -58,7 +58,7 @@ const UploadUserImage = () => {
         <>
             <UserSidebar>
                 <h2 className="font-medium">Update Profile Photo</h2>
-                <div className="grid items-center gap-1.5 w-[50%] mt-6">
+                <div className="grid items-center gap-1.5 md:w-[50%] w-full mt-6">
                     <Input placeholder="Select User Image" onChange={handelChange} className="w-full" type="file"/>
                     <Button onClick={upload} type="button">Upload</Button>
                     {

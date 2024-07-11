@@ -56,7 +56,7 @@ const ChangePassword = ()=>{
         <>
         <UserSidebar>
             <h2 className="font-semibold">Change Password</h2>
-            <div className="w-[50%] mt-5">
+            <div className="md:w-[50%] w-full mt-5">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                         <FormField

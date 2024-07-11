@@ -15,9 +15,9 @@ const UserSidebar = ({children})=>{
         <div className="w-full mt-5">
             <BreadCrump title="My Account" page="My Account" links={links}/>
 
-            <div className="flex justify-between gap-4 mt-4">
+            <div className="flex md:justify-between flex-col md:flex-row gap-4 mt-4">
 
-                <div className="w-[30%] h-auto">
+                <div className="md:w-[30%] w-full h-auto">
                     <div className="w-full h-[100px] border-[1px] border-[#eee] rounded border-solid mb-3">
                         <div className="w-full h-full  flex gap-4 items-center p-4">
                             <Avatar>
@@ -46,7 +46,7 @@ const UserSidebar = ({children})=>{
                     </div>
 
                 </div>
-                <div className="w-[70%]">
+                <div className="md:w-[70%] w-full">
                     {children}
                 </div>
             </div>
