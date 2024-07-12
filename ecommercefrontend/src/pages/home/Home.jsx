@@ -8,6 +8,7 @@ import {useProduct} from "@/store/productStore.js";
 import {useEffect} from "react";
 import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";
+
 const Home = ()=>{
     const productStore = useProduct();
     const getHomeProducts = async ()=>{

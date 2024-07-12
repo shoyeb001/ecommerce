@@ -1,7 +1,7 @@
-import { create } from 'zustand'
+import {create} from 'zustand'
 import {callApi} from "@/config/apiConfig.js";
-import toast from "react-hot-toast";
 import {devtools} from "zustand/middleware";
+
 export const useProduct = create(devtools((set) => ({
     products:[],
     product:null,

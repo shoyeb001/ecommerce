@@ -8,6 +8,7 @@ import UserSidebar from "@/components/userprofile/UserSidebar.jsx";
 import toast from "react-hot-toast";
 import {callApi} from "@/config/apiConfig.js";
 import {useUser} from "@/store/userStore.js";
+
 const UploadUserImage = () => {
     const [img, setImg] = useState();
     const [progress, setProgress] = useState(0);

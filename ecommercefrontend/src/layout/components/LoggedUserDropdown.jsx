@@ -1,18 +1,10 @@
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/components/ui/avatar"
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
+import {Avatar, AvatarFallback, AvatarImage,} from "@/components/ui/avatar"
 import {useUser} from "@/store/userStore.js";
 import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";
 import {Link, useNavigate} from "react-router-dom";
+
 const LoggedUserDropdown = ()=>{
     const userStore = useUser();
     const {user, logout} = userStore;

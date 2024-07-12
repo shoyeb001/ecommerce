@@ -1,6 +1,7 @@
 import {Checkbox} from "@/components/ui/checkbox.jsx";
 import {tagsData} from "@/constant/tagsData.js";
 import {useProduct} from "@/store/productStore.js";
+
 const TagsFilter = ()=> {
     const productStore = useProduct()
     const {filter, setTagsFilter} = productStore;

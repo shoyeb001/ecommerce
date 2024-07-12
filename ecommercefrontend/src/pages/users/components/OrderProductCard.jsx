@@ -1,6 +1,6 @@
-import Image from "@/assets/product.jpg";
 import {Button} from "@/components/ui/button.jsx";
 import Link from "react-router-dom";
+
 const OrderProductCard = ({product}) => {
     return (
         <div className="card border-[1px] border-solid border-[#eee]">

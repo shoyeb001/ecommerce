@@ -14,7 +14,7 @@ const BreadCrump = ({title, page, links})=>{
         <Card className="w-full md:py-4 py-2 md:px-4 px-2 rounded">
             <div className="flex justify-between">
                 <div>
-                    <h6 className="font-bold md:text-[15px] text-[10px]">{title}</h6>
+                    <h6 className="font-bold text-[15px] ">{title}</h6>
                 </div>
                 <div>
                     <Breadcrumb>

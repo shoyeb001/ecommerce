@@ -1,4 +1,4 @@
-import {Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,SheetFooter} from "@/components/ui/sheet"
+import {Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet"
 import {ShoppingCart} from "lucide-react";
 import CartCard from "@/components/cart/CartCard.jsx";
 import {useCart} from "@/store/cartStore.js";
@@ -8,6 +8,7 @@ import {callApi} from "@/config/apiConfig.js";
 import {useUser} from "@/store/userStore.js";
 import {Button} from "@/components/ui/button.jsx";
 import {Link} from "react-router-dom";
+
 const CartSide = ()=>{
     const [isLoading, setIsLoading] = useState();
     const cartStore = useCart();

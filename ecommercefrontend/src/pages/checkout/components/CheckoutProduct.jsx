@@ -1,6 +1,6 @@
 import {useCart} from "@/store/cartStore.js";
-import CartCard from "@/components/cart/CartCard.jsx";
 import VerticalProductCard from "@/components/product/VerticalProductCard.jsx";
+
 const CheckoutProduct = ()=>{
     const cartStore = useCart();
     const {cart, totalAmount, gstAmount} = cartStore;

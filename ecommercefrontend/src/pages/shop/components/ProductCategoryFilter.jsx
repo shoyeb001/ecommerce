@@ -1,7 +1,6 @@
 import {useCategory} from "@/store/categoryStore.js";
 import {Checkbox} from "@/components/ui/checkbox.jsx";
 import {useProduct} from "@/store/productStore.js";
-import {useEffect} from "react";
 
 const ProductCategoryFilter = ()=>{
     const categoryStore = useCategory();

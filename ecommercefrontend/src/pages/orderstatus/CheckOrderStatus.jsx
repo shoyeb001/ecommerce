@@ -1,5 +1,4 @@
 import BreadCrump from "@/components/breadcrumb/BreadCrump.jsx";
-import DetailContainer from "@/pages/product/components/DetailContainer.jsx";
 import TrackOrderHeading from "@/pages/orderstatus/components/TrackOrderHeading.jsx";
 import TrackOrder from "@/pages/orderstatus/components/TrackOrder.jsx";
 

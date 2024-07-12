@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
 import BreadCrump from "@/components/breadcrumb/BreadCrump.jsx";
-import {BriefcaseBusiness} from "lucide-react";
 import {useUser} from "@/store/userStore.js";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar.jsx";
 import {userSidebarLinks} from "@/constant/userSidebar.js";
+
 const UserSidebar = ({children})=>{
     const userStore = useUser();
     const {user} = userStore;

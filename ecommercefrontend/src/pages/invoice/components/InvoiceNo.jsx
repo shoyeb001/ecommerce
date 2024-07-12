@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet } from '@react-pdf/renderer';
+import {StyleSheet, Text, View} from '@react-pdf/renderer';
 import dateFormat from "@/lib/dateFormat.js";
 
 const styles = StyleSheet.create({

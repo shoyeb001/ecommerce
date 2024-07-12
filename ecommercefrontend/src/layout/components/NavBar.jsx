@@ -1,48 +1,18 @@
 import Logo from "@/assets/logo.png"
-import {Heart, Search, ShoppingCart, User} from "lucide-react";
-import {Button} from "@/components/ui/button.jsx";
+import {Heart} from "lucide-react";
 import {Link} from "react-router-dom";
 import {useUser} from "@/store/userStore.js";
 import LoggedUserDropdown from "@/layout/components/LoggedUserDropdown.jsx";
 import UnloggedUserDownload from "@/layout/components/UnloggedUserDownload.jsx";
 import CartSide from "@/components/cart/CartSide.jsx";
 import {useWishlist} from "@/store/wishlistStore.js";
-import SearchItems from "@/layout/components/SearchItems.jsx";
-import toast from "react-hot-toast";
-import {useState} from "react";
-import {callApi} from "@/config/apiConfig.js";
-import {debounce} from "@/lib/debounce.js";
-import {useCallback} from "react";
-import {useEffect} from "react";
 import MobileSidebar from "@/layout/components/MobileSidebar.jsx";
+import SearchBar from "@/layout/components/SearchBar.jsx";
 
 const Navbar = () =>{
     const userStore = useUser();
     const wishlistStore = useWishlist()
     const {user} = userStore;
-    const [products, setProducts] = useState();
-    const searchProducts = async (search)=>{
-        try{
-            const {data} = await callApi({url:`product/search?title=${search}`, method:"get"});
-            setProducts(data);
-        }catch (e) {
-            toast.error(e?.message)
-        }
-    }
-    const handleSearch = useCallback(
-        debounce((searchTerm) => {
-            searchProducts(searchTerm);
-        }, 500),
-        [searchProducts]
-    );
-    const handleChange = (event) => {
-        const searchTerm = event.target.value;
-        if(searchTerm!==""){
-            handleSearch(searchTerm);
-        }
-    };
-
-
 
     return(
         <div className="flex gap-8 py-3 w-[85%] m-auto">
@@ -52,24 +22,8 @@ const Navbar = () =>{
             <div className="md:w-1/6 md:h-[45px] hidden md:block">
                 <img src={Logo} className="w-[144px] "/>
             </div>
-            <div className="md:w-3/6 md:relative hidden md:block">
-                <div className="relative w-full h-[50px] flex items-center  p-2 border-[1px] border-solid border-[#eee] justify-between bg-transparent">
-                    <input
-                        className="block w-full rounded-md border-0 pl-8 py-1.5 focus:outline-none focus:ring-transparent"
-                        type="text"
-                        placeholder="Search Product...."
-                        onChange={handleChange}
-                    />
-                    <Button className="bg-transparent outline-none border-0 shadow-none hover:bg-transparent"><Search className="block absolute text-gray-400" />
-                    </Button>
-                </div>
-                <div className="w-full absolute h-auto z-20 bg-[#fff]">
-                    {
-                        products && products?.map((item)=>(
-                            <SearchItems product={item} key={item?.id}/>
-                        ))
-                    }
-                </div>
+            <div className="md:w-3/6 w-full md:relative hidden md:block">
+                <SearchBar/>
             </div>
             <div className="md:w-2/6 w-4/6">
                 <ul className="flex items-center justify-end gap-x-2">

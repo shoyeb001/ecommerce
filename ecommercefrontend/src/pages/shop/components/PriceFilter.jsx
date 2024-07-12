@@ -1,6 +1,6 @@
 import {Slider} from "@/components/ui/slider.jsx";
-import {useState} from "react";
 import {useProduct} from "@/store/productStore.js";
+
 const PriceFilter = ()=>{
     const productStore = useProduct()
     const {filter, setPriceFilter} =productStore;

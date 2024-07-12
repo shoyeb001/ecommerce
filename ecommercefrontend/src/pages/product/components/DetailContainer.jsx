@@ -1,9 +1,9 @@
-import Image from "@/assets/product.jpg"
 import {Heart, Star} from "lucide-react";
 import {Button} from "@/components/ui/button.jsx";
 import DetailsTab from "@/pages/product/components/DetailsTab.jsx";
 import {useProduct} from "@/store/productStore.js";
 import ProductImageSlider from "@/pages/product/components/ProductImageSlider.jsx";
+
 const DetailContainer = ()=>{
     const productStore = useProduct();
     const {product} = productStore;
@@ -19,7 +19,7 @@ const DetailContainer = ()=>{
                     <div className="flex gap-1 mt-3 items-center">
                         {
                             [...Array(5)].map((_,index)=>(
-                                <Star stroke={(product?.avgRating)>index ? "#f27d0c": "#777"} size={14} fill={(product?.avgRating)>index ? "#f27d0c": "#fff"} />
+                                <Star stroke={(product?.avgRating)>index ? "#f27d0c": "#777"} size={14} fill={(product?.avgRating)>index ? "#f27d0c": "#fff"} key={index}/>
                             ))
                         }
 

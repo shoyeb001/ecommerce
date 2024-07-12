@@ -1,8 +1,8 @@
-import {View, StyleSheet } from '@react-pdf/renderer';
+import {StyleSheet, View} from '@react-pdf/renderer';
 import InvoiceTableHeader from "@/pages/invoice/components/InvoiceTableHeader.jsx";
 import InvoiceTableRow from "@/pages/invoice/components/InvoiceTableRow.jsx";
-import InvoiceTableBlankSpace from "@/pages/invoice/components/InvoiceTableBlankSpace.jsx";
 import InvoiceTableFooter from "@/pages/invoice/components/InvoiceTableFooter.jsx";
+
 const tableRowsCount = 11;
 
 const styles = StyleSheet.create({

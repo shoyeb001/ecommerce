@@ -1,4 +1,4 @@
-import {BookCheckIcon, CalendarCheck2, Truck, HandIcon, CircleCheck} from "lucide-react";
+import {BookCheckIcon, CalendarCheck2, CircleCheck, HandIcon, Truck} from "lucide-react";
 import dateFormat from "@/lib/dateFormat.js";
 
 const OrderStatus = ({status})=>{

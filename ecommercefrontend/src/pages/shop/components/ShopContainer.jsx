@@ -1,12 +1,6 @@
 import ProductFilter from "@/pages/shop/components/ProductFilter.jsx";
 import {useProduct} from "@/store/productStore.js";
-import {
-    Select,
-    SelectContent, SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select"
 import {sortByData} from "@/constant/sortByData.js";
 import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";

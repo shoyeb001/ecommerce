@@ -1,21 +1,15 @@
 import {Card} from "@/components/ui/card.jsx";
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
+import {z} from "zod"
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useForm} from "react-hook-form"
+import {Button} from "@/components/ui/button"
 import {useState} from "react";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
+import {Input} from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {callApi} from "@/config/apiConfig.js";
 import toast from "react-hot-toast";
+
 const formSchema = z.object({
     firstName: z.string().min(2),
     lastName: z.string().min(1,{

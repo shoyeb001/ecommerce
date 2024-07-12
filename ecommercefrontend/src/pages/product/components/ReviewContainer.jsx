@@ -1,6 +1,6 @@
 import User from "@/assets/user.jpg"
 import {Star} from "lucide-react";
-import ReviewForm from "@/pages/product/components/ReviewForm.jsx";
+
 const ReviewContainer = ({data})=>{
     return (
         <div className="w-full px-3 py-5 flex gap-4">

@@ -1,6 +1,5 @@
-import { create } from 'zustand'
+import {create} from 'zustand'
 import {devtools} from "zustand/middleware";
-import {data} from "autoprefixer";
 
 export const useOrder = create(devtools((set) => ({
     orders:[],

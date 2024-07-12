@@ -1,11 +1,7 @@
-import {Phone, MessageCircle } from "lucide-react";
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuList,
-} from "@/components/ui/navigation-menu"
-import {useUser} from "@/store/userStore.js";
+import {MessageCircle, Phone} from "lucide-react";
+import {NavigationMenu, NavigationMenuItem, NavigationMenuList,} from "@/components/ui/navigation-menu"
 import {Link} from "react-router-dom";
+
 const TopHeader = ()=>{
 
     return (

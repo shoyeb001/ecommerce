@@ -7,6 +7,7 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination"
 import {useProduct} from "@/store/productStore.js";
+
 const ProductPagination = ()=>{
     const productStore = useProduct();
     const {total, setPagination, filter} = productStore;

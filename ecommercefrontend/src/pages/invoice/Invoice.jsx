@@ -1,4 +1,4 @@
-import {PDFViewer, Document, View, Text, Page, Image, StyleSheet} from "@react-pdf/renderer";
+import {Document, Image, Page, PDFViewer, StyleSheet} from "@react-pdf/renderer";
 import InvoiceTitle from "@/pages/invoice/components/InvoiceTitle.jsx";
 import InvoiceNo from "@/pages/invoice/components/InvoiceNo.jsx";
 import BillTo from "@/pages/invoice/components/BillTo.jsx";
@@ -11,7 +11,7 @@ import {useOrder} from "@/store/orderStore.js";
 import toast from "react-hot-toast";
 import {callApi} from "@/config/apiConfig.js";
 import {useUser} from "@/store/userStore.js";
-import {useState} from "react";
+
 const Invoice = ()=>{
     const orderStore = useOrder();
     const {setInvoice, order} = orderStore;

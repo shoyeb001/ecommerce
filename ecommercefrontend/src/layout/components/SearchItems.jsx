@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+
 const SearchItems = ({product})=>{
     return (
         <Link to={`/product/${product?.slug}`}>

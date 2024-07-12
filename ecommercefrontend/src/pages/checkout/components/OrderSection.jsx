@@ -6,7 +6,7 @@ import CASH from "@/assets/cash.webp";
 import ONLINE from "@/assets/online.jpg"
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group"
-import { Input } from "@/components/ui/input"
+import {Input} from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea.jsx";
 import {useUser} from "@/store/userStore.js";
 import {callApi} from "@/config/apiConfig.js";
@@ -14,6 +14,7 @@ import {useOrder} from "@/store/orderStore.js";
 import {useState} from "react";
 import toast from "react-hot-toast";
 import {useCart} from "@/store/cartStore.js";
+
 const formSchema = z.object({
     paymentMethod: z.enum(["CASH", "ONLINE"], {
         required_error: "You need to select a notification type.",

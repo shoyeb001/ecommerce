@@ -1,6 +1,7 @@
 import TopHeader from "@/layout/components/TopHeader.jsx";
 import NavBar from "@/layout/components/NavBar.jsx";
 import MainNav from "@/layout/components/MainNav.jsx";
+import MobileNav from "@/layout/components/MobileNav.jsx";
 
 const Header = ()=>{
     return(
@@ -9,6 +10,7 @@ const Header = ()=>{
                 <TopHeader/>
                 <NavBar/>
                 <MainNav/>
+                <MobileNav/>
             </div>
         </header>
     )

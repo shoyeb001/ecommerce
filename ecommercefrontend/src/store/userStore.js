@@ -1,5 +1,6 @@
-import { create } from 'zustand'
+import {create} from 'zustand'
 import {devtools} from "zustand/middleware";
+
 export const useUser = create(devtools((set) => ({
     user:null,
     token: localStorage.getItem("token") || null,

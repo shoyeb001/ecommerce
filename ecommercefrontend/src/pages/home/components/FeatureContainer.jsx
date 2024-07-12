@@ -1,4 +1,4 @@
-import { Truck } from 'lucide-react';
+import {Truck} from 'lucide-react';
 
 const FeatureContainer = ()=>{
     return (

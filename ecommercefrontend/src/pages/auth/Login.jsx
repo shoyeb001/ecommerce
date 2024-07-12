@@ -6,12 +6,12 @@ import {useForm} from "react-hook-form"
 import {Button} from "@/components/ui/button"
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
 import {Input} from "@/components/ui/input"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {callApi} from "@/config/apiConfig.js";
 import {useUser} from "@/store/userStore.js";
 import toast from "react-hot-toast";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+
 const loginSchema = z.object({
     email: z.string().min(2).max(50).email(),
     password: z.string().min(8).max(),

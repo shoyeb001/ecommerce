@@ -1,19 +1,11 @@
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
+import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow,} from "@/components/ui/table"
 import {Button} from "@/components/ui/button.jsx";
 import toast from "react-hot-toast";
 import {callApi} from "@/config/apiConfig.js";
 import {useUser} from "@/store/userStore.js";
 import {useWishlist} from "@/store/wishlistStore.js";
 import dateFormat from "@/lib/dateFormat.js";
-import { ShoppingCart, CircleX } from 'lucide-react';
+import {CircleX, ShoppingCart} from 'lucide-react';
 import {useEffect} from "react";
 import {useCart} from "@/store/cartStore.js";
 

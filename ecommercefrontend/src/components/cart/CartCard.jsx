@@ -1,4 +1,4 @@
-import {CircleX, Loader} from "lucide-react";
+import {CircleX} from "lucide-react";
 import {useCallback, useState} from "react";
 import {useUser} from "@/store/userStore.js";
 import {useCart} from "@/store/cartStore.js";
@@ -11,7 +11,6 @@ const CartCard = ({data})=>{
     const userStore = useUser();
     const cartStore = useCart();
     const {cart, updateQty, getTotalAmount, deleteCart} = cartStore;
-    const [loading, setLoading] = useState(false);
 
     const deleteCartItem = async(id)=>{
         try{
@@ -25,16 +24,13 @@ const CartCard = ({data})=>{
     }
     const updateCart = async (productId, quantity, id) => {
         try {
-            setLoading(true);
             const response = await callApi({url:"user/cart/update", method:"put", token:userStore.user.token, data:{
                 productId: productId, quantity:quantity, id:id
             }});
             console.log(response.data);
             updateQty(response.data, response.data.id);
             getTotalAmount();
-            setLoading(false);
         }catch (e) {
-            setLoading(false);
             toast.error(e?.message)
         }
     };
