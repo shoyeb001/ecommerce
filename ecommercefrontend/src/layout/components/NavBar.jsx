@@ -8,12 +8,27 @@ import CartSide from "@/components/cart/CartSide.jsx";
 import {useWishlist} from "@/store/wishlistStore.js";
 import MobileSidebar from "@/layout/components/MobileSidebar.jsx";
 import SearchBar from "@/layout/components/SearchBar.jsx";
+import toast from "react-hot-toast";
+import {callApi} from "@/config/apiConfig.js";
+import {useEffect} from "react";
 
 const Navbar = () =>{
     const userStore = useUser();
     const wishlistStore = useWishlist()
     const {user} = userStore;
 
+    const getWishlist = async ()=>{
+        try{
+            const {data} = await callApi({url:"user/wishlist/view", method:"get", token:userStore.token});
+            wishlistStore.setWishlist(data);
+        }catch (e) {
+            toast.error(e?.reserved?.data?.message)
+        }
+    }
+
+    useEffect(() => {
+        getWishlist()
+    }, []);
     return(
         <div className="flex gap-8 py-3 w-[85%] m-auto">
             <div className="md:hidden w-2/6">
