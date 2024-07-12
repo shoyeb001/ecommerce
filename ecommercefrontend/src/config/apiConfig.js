@@ -4,7 +4,7 @@ export const callApi = async ({url, data,method, token}) =>{
 
     return axios({
         method: method,
-        url: `https://ecommerce-sandy-nine.vercel.app/api/${url}`,
+        url: `/api/${url}`,
         data: data,
         headers: {
             'Authorization': `Bearer ${token}`, // Replace authToken with your actual token

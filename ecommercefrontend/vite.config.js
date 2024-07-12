@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: "https://ecommerce-sandy-nine.vercel.app/",
+        target: "https://ecommerce-sandy-nine.vercel.app",
         changeOrigin: true,
       },
     },
