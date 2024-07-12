@@ -15,7 +15,7 @@ const nextConfig = {
                     { key: "Access-Control-Allow-Credentials", value: "true" },
                     {
                         key: "Access-Control-Allow-Origin",
-                        value: "http://localhost:5173", // Set your origin
+                        value: "https://grosary-ecomerce.vercel.app", // Set your origin
                     },
                     {
                         key: "Access-Control-Allow-Methods",
