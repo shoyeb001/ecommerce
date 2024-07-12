@@ -11,12 +11,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: "https://ecommerce-sandy-nine.vercel.app/",
-  //       changeOrigin: true,
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      '/api': {
+        target: "https://ecommerce-sandy-nine.vercel.app/",
+        changeOrigin: true,
+      },
+    },
+  },
 })
