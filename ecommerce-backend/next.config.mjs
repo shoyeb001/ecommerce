@@ -18,6 +18,10 @@ const nextConfig = {
                         value: "https://grosary-ecomerce.vercel.app", // Set your origin
                     },
                     {
+                        key: "Access-Control-Allow-Origin",
+                        value: "http://localhost:5173", // Set your origin
+                    },
+                    {
                         key: "Access-Control-Allow-Methods",
                         value: "GET, POST, PUT, DELETE, OPTIONS",
                     },

@@ -7,6 +7,7 @@ import {getTokenData} from "@/helpers/get-token-data";
 export async function middleware(req){
     req.headers.set('Access-Control-Allow-Credentials', 'true');
     req.headers.set('Access-Control-Allow-Origin', 'https://grosary-ecomerce.vercel.app');
+    req.headers.set('Access-Control-Allow-Origin', 'http://localhost:5173');
     req.headers.set('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
     req.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
