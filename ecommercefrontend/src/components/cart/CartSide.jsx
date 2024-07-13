@@ -17,7 +17,7 @@ const CartSide = ()=>{
     const getCartData = async ()=>{
         try{
             setIsLoading(true);
-            const {data} = await callApi({url:"user/cart/view", method:"get", token:userStore.user.token});
+            const {data} = await callApi({url:"user/cart/view", method:"get", token:userStore.token});
             setCart(data);
             getTotalAmount();
             setIsLoading(false);
