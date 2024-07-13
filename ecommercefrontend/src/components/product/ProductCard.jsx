@@ -24,7 +24,7 @@ const ProductCard = ({data})=>{
                 return toast.error("Signin for add to wishlist")
             }
             setWishLoading(true);
-            const {data} = await callApi({url:"user/wishlist/add", method:"post", token:userStore.token, data:{
+            const {data} = await callApi({url:"user/wishlist/add", method:"post", token:userStore.user.token, data:{
                 productId:id
             }});
             setWishLoading(false);
@@ -45,7 +45,7 @@ const ProductCard = ({data})=>{
                 productId: id,
                 quantity: 1
             }
-            const {data} = await callApi({url:"user/cart/add", method:"post", data:cartData, token:userStore.token});
+            const {data} = await callApi({url:"user/cart/add", method:"post", data:cartData, token:userStore.user.token});
             addToCart(data);
             getTotalAmount()
             setIsLoading(false);

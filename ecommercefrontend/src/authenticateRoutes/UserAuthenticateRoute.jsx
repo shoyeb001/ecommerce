@@ -5,9 +5,9 @@ import {Loader} from "lucide-react";
 
 const UserAuthenticateRoute = ({children})=>{
     const userStore = useUser();
-    const {token} = userStore;
-    console.log(token, "token")
-    return token===null ?(
+    const {user} = userStore;
+    // console.log(token, "token")
+    return user?.token===null ?(
             <Navigate to="/login" />
     ):(
         <Suspense fallback={<Loader />}>{children}</Suspense>

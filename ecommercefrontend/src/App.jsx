@@ -21,6 +21,8 @@ import CheckOrderStatus from "@/pages/orderstatus/CheckOrderStatus.jsx";
 import Wishlist from "@/pages/wishlist/Wishlist.jsx";
 function App() {
     const userStore = useUser();
+    const token = localStorage.getItem("token");
+
     const getUser = async (token)=>{
         try {
             const {data} = await callApi({url:"user/detail", method:"get", token});
@@ -30,11 +32,10 @@ function App() {
         }
     }
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if(token){
             getUser(token)
         }
-    }, []);
+    }, [token]);
   return (
     <>
         <Toaster
