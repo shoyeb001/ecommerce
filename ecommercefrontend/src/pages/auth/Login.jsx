@@ -33,7 +33,7 @@ const Login = ()=>{
             setIsLoading(true);
             const {data} = await callApi({url:"auth/login", method:"post", data:values});
             console.log(data,"data")
-            userStore.setLoginUser(data);
+            userStore.setLoginUser({...data, token: data?.access_token});
             localStorage.setItem("token", data.access_token)
             setIsLoading(false);
             navigate("/");
