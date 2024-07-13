@@ -19,7 +19,7 @@ const Navbar = () =>{
 
     const getWishlist = async ()=>{
         try{
-            const {data} = await callApi({url:"user/wishlist/view", method:"get", token:userStore.token});
+            const {data} = await callApi({url:"user/wishlist/view", method:"get", token:userStore?.user?.token});
             wishlistStore.setWishlist(data);
         }catch (e) {
             toast.error(e?.reserved?.data?.message)

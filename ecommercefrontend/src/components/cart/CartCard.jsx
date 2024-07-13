@@ -14,7 +14,7 @@ const CartCard = ({data})=>{
 
     const deleteCartItem = async(id)=>{
         try{
-            await callApi({url:`user/cart/delete?cartId=${id}`, method:"delete", token:userStore.token});
+            await callApi({url:`user/cart/delete?cartId=${id}`, method:"delete", token:userStore?.user?.token});
             deleteCart(id)
             getTotalAmount()
             toast.success("Item deleted from cart");
