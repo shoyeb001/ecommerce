@@ -6,7 +6,6 @@ import {Loader} from "lucide-react";
 const UserAuthenticateRoute = ({children})=>{
     const userStore = useUser();
     const {user} = userStore;
-    // console.log(token, "token")
     return user==null ?(
             <Navigate to="/login" />
     ):(
