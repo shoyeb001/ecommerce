@@ -73,15 +73,15 @@ const Register =()=>{
         <div className="w-full">
             <h6 className="font-bold text-2xl text-center mt-[40px]">Register</h6>
             <p className="text-[#777] text-[14px] text-center">Best place to buy and sell digital products.</p>
-            <Card className="w-[80%] m-auto  py-5 px-5 mt-5 rounded">
+            <Card className="md:w-[80%] w-full m-auto  py-5 px-5 mt-5 rounded">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                        <div className="flex gap-4">
+                        <div className="md:flex md:gap-4">
                             <FormField
                                 control={form.control}
                                 name="firstName"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1 mb-2">
                                         <FormLabel>First Name</FormLabel>
                                         <FormControl>
                                             <Input placeholder="First Name" {...field} />
@@ -94,7 +94,7 @@ const Register =()=>{
                                 control={form.control}
                                 name="lastName"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1 mb-2">
                                         <FormLabel>Last Name</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Last Name" {...field} />
@@ -104,12 +104,12 @@ const Register =()=>{
                                 )}
                             />
                         </div>
-                        <div className="flex gap-4">
+                        <div className="md:flex md:gap-4">
                             <FormField
                                 control={form.control}
                                 name="email"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1 ">
+                                    <FormItem className="md:flex-1 mb:2">
                                         <FormLabel>Email</FormLabel>
                                         <FormControl>
                                             <Input type="email" placeholder="example@gmail.com" {...field} />
@@ -122,7 +122,7 @@ const Register =()=>{
                                 control={form.control}
                                 name="password"
                                 render={({ field }) => (
-                                    <FormItem  className="flex-1">
+                                    <FormItem  className="md:flex-1 mb-2">
                                         <FormLabel>Password</FormLabel>
                                         <FormControl>
                                             <Input  type="password" placeholder="Password" {...field} />
@@ -132,12 +132,12 @@ const Register =()=>{
                                 )}
                             />
                         </div>
-                        <div className="flex gap-4">
+                        <div className="md:flex md:gap-4">
                             <FormField
                                 control={form.control}
                                 name="address"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1">
                                         <FormLabel>Adrress</FormLabel>
                                         <FormControl>
                                             <Textarea className="h-60" {...field}></Textarea>
@@ -150,7 +150,7 @@ const Register =()=>{
                                 control={form.control}
                                 name="phone"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1">
                                         <FormLabel>Phone Number</FormLabel>
                                         <FormControl>
                                             <Input type="number" placeholder="Phone Number" {...field} />
@@ -160,12 +160,12 @@ const Register =()=>{
                                 )}
                             />
                         </div>
-                        <div className="flex gap-4">
+                        <div className="md;flex md:gap-4">
                             <FormField
                                 control={form.control}
                                 name="city"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1 mb-2">
                                         <FormLabel>City</FormLabel>
                                         <FormControl>
                                             <Input type="text" placeholder="City" {...field} />
@@ -178,7 +178,7 @@ const Register =()=>{
                                 control={form.control}
                                 name="pin"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1 mb-2">
                                         <FormLabel>Pin</FormLabel>
                                         <FormControl>
                                             <Input type="number" placeholder="Pin" {...field} />
@@ -188,12 +188,12 @@ const Register =()=>{
                                 )}
                             />
                         </div>
-                        <div className="flex gap-4">
+                        <div className="md:flex md:gap-4">
                             <FormField
                                 control={form.control}
                                 name="state"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1 mb-2">
                                         <FormLabel>State</FormLabel>
                                         <FormControl>
                                             <Input type="text" placeholder="State" {...field} />
@@ -206,7 +206,7 @@ const Register =()=>{
                                 control={form.control}
                                 name="country"
                                 render={({ field }) => (
-                                    <FormItem className="flex-1">
+                                    <FormItem className="md:flex-1 mb-2">
                                         <FormLabel>Country</FormLabel>
                                         <FormControl>
                                             <Input type="text" placeholder="Country" {...field} />
@@ -217,7 +217,7 @@ const Register =()=>{
                             />
                         </div>
 
-                        <Button type="submit" disabled={isLoading}>Register</Button>
+                        <Button type="submit" className="w-full md:w-auto" disabled={isLoading}>Register</Button>
                     </form>
                 </Form>
             </Card>

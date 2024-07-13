@@ -19,6 +19,10 @@ export const useWishlist = create(devtools((set) => ({
                 wishlist: state.wishlist.filter((item)=>item.id!==id)
             }
         })
-    }
+    },
+
+    clearWishlist:()=>{
+        set((state)=>({wishlist: []}))
+    },
 }),{name:"Wishlist Store"}
 ))

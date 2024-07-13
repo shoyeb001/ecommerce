@@ -46,10 +46,10 @@ const Login = ()=>{
 
 
     return(
-        <div className="w-[80%] m-auto">
+        <div className="md:w-[80%] w-full m-auto">
             <h3 className="font-bold text-2xl text-center mt-4">Login</h3>
             <p className="text-[14px] text-[#777] text-center">Get access to your Orders, Wishlist and Recommendations.</p>
-            <div className="grid grid-cols-2 gap-4 mt-8">
+            <div className="grid grid-col-1 md:grid-cols-2 gap-4 mt-8">
                 <div className="w-full">
                     <Card className="rounded">
                         <CardContent>
@@ -84,14 +84,14 @@ const Login = ()=>{
                                     <p className="text-[#777] text-end text-[14px]">Forget Password?</p>
                                     <div className="flex justify-between items-center">
                                         <Link to="/register" className="text-[14px] text-[#777] hover:text-[#5caf90]">Create Account</Link>
-                                        <Button disabled={isLoading} type="submit">Login</Button>
+                                        <Button disabled={isLoading} className="w-full md:w-auto" type="submit">Login</Button>
                                     </div>
                                 </form>
                             </Form>
                         </CardContent>
                     </Card>
                 </div>
-                <div className="w-full rounded">
+                <div className="w-full hidden md:block rounded">
                     <img src={Image} className="w-full overflow-hidden"/>
                 </div>
             </div>

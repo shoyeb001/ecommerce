@@ -27,8 +27,8 @@ const Navbar = () =>{
     }
 
     useEffect(() => {
-        getWishlist()
-    }, []);
+       if(user) getWishlist()
+    }, [user]);
     return(
         <div className="flex gap-8 py-3 w-[85%] m-auto">
             <div className="md:hidden w-2/6">
