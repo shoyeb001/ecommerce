@@ -207,7 +207,7 @@ const OrderSection = ()=>{
                                                     className="w-full flex justify-between h-[90px]  border-[1px] border-solid border-[#eee]">
                                                     <div className="p-4 flex items-center">
                                                         <img src={ONLINE} className="w-[100px] h-full object-contain"/>
-                                                        <span>Cash on Delivery</span>
+                                                        <span>Online Payment</span>
                                                     </div>
                                                     <div className="flex items-center p-4">
                                                         <FormControl>
