@@ -6,6 +6,8 @@ import ProductList from "@/pages/dashboard/product/ProductList.jsx";
 import {Toaster} from "react-hot-toast";
 import AuthenticateRoute from "@/protectedRoutes/AuthenticateRoute.jsx";
 import CategoryList from "@/pages/dashboard/category/CategoryList.jsx";
+import AllOrder from "@/pages/dashboard/order/AllOrder.jsx";
+import User from "@/pages/dashboard/user/User.jsx";
 function App() {
 
   return (
@@ -23,6 +25,16 @@ function App() {
           <AuthenticateRoute>
             <CategoryList/>
             </AuthenticateRoute>
+        }/>
+        <Route path="/dashboard/orders" element={
+          <AuthenticateRoute>
+            <AllOrder/>
+          </AuthenticateRoute>
+        }/>
+        <Route path="/dashboard/users" element={
+          <AuthenticateRoute>
+            <User/>
+          </AuthenticateRoute>
         }/>
       </Route>
     </Routes>

@@ -15,7 +15,7 @@ export async function PUT(req){
         const {status} = await req.json();
         const updatedOrder = await db.order.update({
             where:{
-                orderId:orderId
+                id:orderId
             },
             data:{
                 orderStatus: status

@@ -8,16 +8,31 @@ export async function GET(req){
         if(status){
             const orders = await db.order.findMany({
                 where:{
-                    status: status
+                    orderStatus: status
+                },
+                include:{
+                    OrderItems:{
+                        include:{
+                            product:true
+                        }
+                    }
                 }
             })
             return NextResponse.json(orders,{
                 status:200
             })
         }
-        const orders = await db.order.findMany();
+        const orders = await db.order.findMany({
+            include:{
+                OrderItems:{
+                    include:{
+                        product:true
+                    }
+                }
+            }
+        });
         return NextResponse.json(orders,{
-            status:true
+            status:200
         })
     }catch (e) {
         return NextResponse.json({
