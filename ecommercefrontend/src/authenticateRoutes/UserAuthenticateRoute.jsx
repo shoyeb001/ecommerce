@@ -7,7 +7,7 @@ const UserAuthenticateRoute = ({children})=>{
     const userStore = useUser();
     const {user} = userStore;
     // console.log(token, "token")
-    return user?.token===null ?(
+    return user==null ?(
             <Navigate to="/login" />
     ):(
         <Suspense fallback={<Loader />}>{children}</Suspense>
