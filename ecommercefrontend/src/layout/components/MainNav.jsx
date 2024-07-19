@@ -24,17 +24,17 @@ const MainNav = () =>{
                     <NavigationMenuItem>
                         <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <Link href="/fruits" legacyBehavior passHref>
+                            <Link href="#" legacyBehavior passHref>
                                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                     <span className="pr-[60px]"> Fruits</span>
                                 </NavigationMenuLink>
                             </Link>
-                            <Link href="/fruits" legacyBehavior passHref>
+                            <Link href="#" legacyBehavior passHref>
                                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                     <span className="pr-[60px]"> Drinks</span>
                                 </NavigationMenuLink>
                             </Link>
-                            <Link href="/fruits" legacyBehavior passHref>
+                            <Link href="#" legacyBehavior passHref>
                                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                     <span className="pr-[60px]"> Breakfast</span>
                                 </NavigationMenuLink>
@@ -42,28 +42,28 @@ const MainNav = () =>{
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/shop" legacyBehavior passHref>
+                        <Link to="/shop" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Shop
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/shop" legacyBehavior passHref>
+                        <Link to="/shop" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 About
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/contact" legacyBehavior passHref>
+                        <Link to="/contact" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Contact
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/blog" legacyBehavior passHref>
+                        <Link to="/blog" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Blog
                             </NavigationMenuLink>
