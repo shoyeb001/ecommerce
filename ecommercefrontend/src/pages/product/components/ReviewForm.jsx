@@ -17,7 +17,7 @@ const ReviewForm = ()=>{
     const submitReview = async()=>{
         try{
             setIsLoading(true);
-            const {data}=  await callApi({url:"user/review/add", method:"post", token:userStore.user.token, data:{description, rating:currentValue, productId: productStore.product.id}})
+            const {data}=  await callApi({url:"user/review/add", method:"post", token:userStore?.user?.token, data:{description, rating:currentValue, productId: productStore.product.id}})
             setIsLoading(false);
             productStore.setProductReview(data);
             toast.success("Review added successfully")

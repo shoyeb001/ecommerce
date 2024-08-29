@@ -40,7 +40,7 @@ const Login = ()=>{
             toast.success("Login successfull");
         }catch (e) {
             setIsLoading(false);
-            toast.error(e?.message)
+            toast.error(e?.response?.data?.message)
         }
     }
 

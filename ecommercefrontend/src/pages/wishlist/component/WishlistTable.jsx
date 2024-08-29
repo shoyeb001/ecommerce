@@ -32,7 +32,7 @@ const WishlistTable = ()=>{
             getTotalAmount()
             toast.success("Product added in cart");
         }catch (e) {
-            toast.error(e?.message)
+            toast.error(e?.response?.data?.message)
         }
     }
     const deleteWishlistItem = async (id)=>{
